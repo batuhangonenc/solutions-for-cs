@@ -150,7 +150,7 @@ struct DoublyLinkedList{
 				iter->next->next->prev = iter;
 				iter -> next =iter->next->next;
 
-				free(deleted);
+				delete deleted;
 				return;
 			}
 

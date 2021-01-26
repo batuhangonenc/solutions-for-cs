@@ -151,7 +151,7 @@ struct LinkedList{
 
 				iter->next = iter->next->next;
 
-				free(deleted);
+				delete deleted;
 				return;
 			}
 
