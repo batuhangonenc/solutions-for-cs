@@ -14,11 +14,14 @@ struct LinkedList{
 	node* root = new node;
 
 	LinkedList(){
-		node* iter = root;
-		iter->next = NULL;
+		root->next = NULL;
+		root->data = NULL;
 	}
 
 	LinkedList(int len){
+		root -> data = NULL;
+		root -> next = NULL;
+
 		node* iter = root;	
 
 		for(int i{0} ; i < len ; i++){
@@ -33,6 +36,9 @@ struct LinkedList{
 	}
 
 	LinkedList(datatype* arr, int SIZE){
+		root -> data = NULL;
+		root -> next == NULL;
+		
 		node* iter = root;	
 
 		for(int i{0} ; i < SIZE ; i++){
@@ -86,6 +92,9 @@ struct LinkedList{
 
 
 	void change(int pos, datatype arg){
+		if( arg == NULL )
+			return;
+
 		node* iter = root;
 
 		for(int i{0} ; ;){
@@ -114,10 +123,13 @@ struct LinkedList{
 
 
 
-	void push_front(datatype n){
+	void push_front(datatype arg){
+		if (arg == NULL)
+		       return;
+
 		node* newnode = new node;
 
-		newnode->data = n;
+		newnode->data = arg;
 		newnode->next = root->next;
 
 		root->next = newnode;
@@ -125,7 +137,10 @@ struct LinkedList{
 		return;
 	}
 
-	void push_end(datatype n){
+	void push_end(datatype arg){
+		if( arg == NULL )
+			return;
+
 		node* iter = root;
 
 		for(; iter->next != NULL ;)
@@ -135,12 +150,12 @@ struct LinkedList{
 
 		iter = iter->next;
 		
-		iter->data = n;
+		iter->data = arg;
 		iter->next = NULL;
 	}
 
 
-	void deleteit( int pos){
+	void delete_at( int pos){
 		node* iter = root;
 
 		for(int i{0}; iter != NULL ;){
@@ -166,38 +181,44 @@ struct LinkedList{
 	}
 
 
-	void concat(node* r2){
+	void concat(node* new_root){
+		if ( new_root -> next == NULL)
+			return;
+
 		node* iter = root;
 
 		for(; iter->next != NULL ;)
 			iter = iter->next;
 
-		iter->next = r2->next;
+		iter -> next = new_root -> next;
 		return;
 	}
 
-	void insert(int pos, node* nr){
+	void insert(int pos, node* new_root){
+		if ( new_root -> next == NULL || root -> next == NULL )
+			return;
+
 		node* iter = root;
 		for(int i{0} ; ;){
 
 			if( i  == pos ){
-				nr = nr->next;
+				new_root = new_root->next;
 				
 				node* b_iter = iter->next;
 
-				iter->next = nr;
+				iter->next = new_root;
 
-				while( nr->next != NULL ){
-					nr = nr->next;
+				while( new_root->next != NULL ){
+					new_root = new_root->next;
 				}
 
-				nr->next = b_iter;
+				new_root -> next = b_iter;
 				return;
 
 			}
 
 			else if( iter->next == NULL){
-				concat(nr);
+				concat(new_root);
 				return;
 			}
 

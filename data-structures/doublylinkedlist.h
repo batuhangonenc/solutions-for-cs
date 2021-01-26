@@ -13,9 +13,17 @@ struct DoublyLinkedList{
 	};
 
 	node* root = new node;
-
+	
+	DoublyLinkedList(){
+		root -> next = NULL;
+		root -> prev = nullptr;
+	}
 
 	DoublyLinkedList(int len){
+		root -> prev = nullptr;
+		root -> data = NULL;
+		root -> next = NULL;
+
 		node* iter = root;	
 
 		for(int i{0} ; i < len ; i++){
@@ -32,6 +40,11 @@ struct DoublyLinkedList{
 
 
 	DoublyLinkedList(datatype* arr, int SIZE){
+		root -> prev = nullptr;
+		root -> data = NULL;
+		root -> next = NULL;
+
+
 		node* iter = root;	
 	
 		for(int i{0} ; i < SIZE ; i++){
@@ -84,6 +97,9 @@ struct DoublyLinkedList{
 
 
 	void change(int pos, datatype arg){
+		if( arg == NULL )
+			return;
+		
 		node* iter = root;
 
 		for(int i{0} ; ;){
@@ -110,10 +126,13 @@ struct DoublyLinkedList{
 	}
 
 
-	void push_front(datatype n){
+	void push_front(datatype arg){
+		if( arg == NULL )
+			return;
+
 		node* newnode = new node;
 
-		newnode->data = n;
+		newnode->data = arg;
 		newnode->prev = root;
 		newnode->next = root->next;
 
@@ -122,7 +141,10 @@ struct DoublyLinkedList{
 		return;
 	}
 
-	void push_end(datatype n){
+	void push_end(datatype arg){
+		if ( arg == NULL )
+		       return;	
+
 		node* iter = root;
 
 		for(; iter->next != NULL ;)
@@ -133,12 +155,12 @@ struct DoublyLinkedList{
 		iter->next->prev = iter;
 		iter = iter->next;
 		
-		iter->data = n;
+		iter->data = arg;
 		iter->next = NULL;
 	}
 
 
-	void deleteit( int pos){
+	void delete_at( int pos){
 		node* iter = root;
 
 		for(int i{0}; iter != NULL ;){
@@ -165,42 +187,48 @@ struct DoublyLinkedList{
 	}
 
 
-	void concat(node* r2){
+	void concat(node* new_root){
+		if ( new_root -> next == NULL)
+			return;
+
 		node* iter = root;
 
 		for(; iter->next != NULL ;)
 			iter = iter->next;
 
-		r2->next->prev = iter;
+		new_root->next->prev = iter;
 
-		iter->next = r2->next;
+		iter->next = new_root->next;
 		return;
 	}
 
-	void insert(int pos, node* nr){
+	void insert(int pos, node* new_root){
+		if( root -> next == NULL || new_root -> next == NULL)
+			return;
+		
 		node* iter = root;
 		for(int i{0} ; ;){
 
 			if( i  == pos ){
-				nr = nr->next;
+				new_root = new_root->next;
 
 				node* b_iter = iter->next;
 
-				nr->prev = iter;
-				iter->next = nr;
+				new_root -> prev = iter;
+				iter->next = new_root;
 
-				while( nr->next != NULL ){
-					nr = nr->next;
+				while( new_root->next != NULL ){
+					new_root = new_root ->next;
 				}
 
-				b_iter->prev = nr;
-				nr->next = b_iter;
+				b_iter->prev = new_root;
+				new_root ->next = b_iter;
 				return;
 
 			}
 
 			else if( iter->next == NULL){
-				concat(nr);
+				concat(new_root);
 				return;
 			}
 
