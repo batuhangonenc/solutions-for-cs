@@ -1,6 +1,6 @@
-# Guide for Structures
+### Guide for Structures
 
-## Linked List Methods
+#### Linked List Methods
 
 - print(), prints linked list to end by root.
 
@@ -18,7 +18,7 @@
 
 - insert( int pos, node* new_root ), links the node in position to the new_root and links the last element of new linked list to next element of the node in position.
 
-## Doubly Linked List Methods
+#### Doubly Linked List Methods
 
 
 - print(), prints doubly linked list to end by root.
@@ -38,7 +38,7 @@
 - insert( int pos, node* new_root ), links the node in position to the new_root and links the last element of new linked list to next element of the node in position.
 
 
-## Circular Linked List Methods
+#### Circular Linked List Methods
 
 - print(), prints circular linked list to end by head.
 - push( datatype arg ), adds a new node with arg to circular linked list.
