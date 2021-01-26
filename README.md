@@ -40,7 +40,7 @@
 
 ## Circular Linked List Methods
 
-- print(), prints circular list to end by head.
+- print(), prints circular linked list to end by head.
 - push( datatype arg ), adds a new node with arg to circular linked list.
 - delete_at( int pos ), removes the node in position from circular linked list.
 - insert( int pos, node* new_head ), links the node in position to new_head and links the last element of new circular or normal linked list to the next element of the node in position. 
