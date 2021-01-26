@@ -106,7 +106,7 @@ struct DoublyLinkedList{
 	}
 
 
-	void change(int pos, datatype arg){
+	void change_at(int pos, datatype arg){
 		if( arg == NULL )
 			return;
 		
