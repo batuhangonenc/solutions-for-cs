@@ -22,6 +22,24 @@ struct CircularLinkedList{
 
 	}
 
+	void self_destruct(){
+		if ( head -> next == NULL )
+			return;
+
+		while(true){
+
+			node* iter_deleter = head;
+
+			iter_deleter -> data = NULL;
+			iter_deleter -> next = nullptr;
+
+			if( head -> next == NULL )
+				break;
+
+			head = head -> next;
+		}
+	}
+
 	void print(){
 		int i{0};
 

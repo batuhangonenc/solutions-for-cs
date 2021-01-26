@@ -2,6 +2,8 @@
 
 #### Linked List Methods
 
+- self_destruct(), frees all the memory that using by it.
+
 - print (), prints linked list to end by root.
 
 - reverse (), prints linked list to root by end.
@@ -20,6 +22,7 @@
 
 #### Doubly Linked List Methods
 
+- self_destruct(), frees all the memory that using by it.
 
 - print (), prints doubly linked list to end by root.
 
@@ -39,8 +42,12 @@
 
 
 #### Circular Linked List Methods
+- self_destruct(), frees all the memory using by it.
 
 - print (), prints circular linked list to end by head.
+
 - push ( datatype arg ), adds a new node with arg to circular linked list.
+
 - delete_at ( int pos ), removes the node in position from circular linked list.
+
 - insert ( int pos, node* new_head ), links the node in position to new_head and links the last element of new circular or normal linked list to the next element of the node in position. 

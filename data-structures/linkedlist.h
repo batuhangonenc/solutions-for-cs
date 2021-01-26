@@ -53,6 +53,25 @@ struct LinkedList{
 	}
 
 
+	void self_destruct(){
+		if(root -> next == NULL)
+			return;
+
+		while(true){
+			
+			node* iter_deleter = root;
+
+			iter_deleter -> data = NULL;
+			iter_deleter -> next = nullptr;
+
+			if( root -> next == NULL )
+				return;
+
+			root = root -> next;
+
+		}
+	}
+
 	datatype at(int pos){
 	
 		node* iter = root;
@@ -90,10 +109,16 @@ struct LinkedList{
 
 
 	void print(){
+		if(root -> next == NULL)
+			return;
+
 
 		node* iter = root;
 
-		for(int i{0} ; iter->next != NULL ; i++){
+		for(int i{0} ;; i++){
+			if ( iter -> next == NULL )
+				return;
+
 			iter = iter->next ;
 			std::cout << "node " << i << " :"<< iter->data << "\n";
 		}
@@ -103,6 +128,9 @@ struct LinkedList{
 
 
 	void change_at(int pos, datatype arg){
+		if(root -> next == NULL)
+			return;
+
 		if( arg == NULL )
 			return;
 
@@ -167,6 +195,10 @@ struct LinkedList{
 
 
 	void delete_at( int pos){
+		if(root -> next == NULL)
+			return;
+
+
 		node* iter = root;
 
 		for(int i{0}; iter != NULL ;){

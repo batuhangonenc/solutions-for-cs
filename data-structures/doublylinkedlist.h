@@ -40,6 +40,7 @@ struct DoublyLinkedList{
 
 
 	DoublyLinkedList(datatype* arr, int SIZE){
+
 		root -> prev = nullptr;
 		root -> data = NULL;
 		root -> next = NULL;
@@ -59,8 +60,30 @@ struct DoublyLinkedList{
 		}
 	}
 
+	void self_destruct(){
+		if ( root -> next == NULL )
+			return;
+
+		while(true){
+			node* iter_deleter = root;
+
+			iter_deleter -> data = NULL;
+			iter_deleter -> prev = nullptr;
+			iter_deleter -> next = nullptr;
+
+			if( root -> next  == NULL )
+				break;
+
+			root = root -> next;
+		}
+
+	}
+
+
 	datatype at(int pos){
-	
+		if(root -> next == NULL)
+			return;
+
 		node* iter = root;
 
 		int i{0};
@@ -94,10 +117,15 @@ struct DoublyLinkedList{
 	}
 
 	void print(){
+		if(root -> next == NULL)
+			return;
 
 		node* iter = root;
 
-		for(int i{0} ; iter->next != NULL ; i++){
+		for(int i{0} ; ; i++){
+			if ( iter -> next == NULL )
+				return;
+
 			iter = iter->next ;
 			std::cout << "node " << i << " :"<< iter->data << "\n";
 		}
@@ -107,7 +135,7 @@ struct DoublyLinkedList{
 
 
 	void change_at(int pos, datatype arg){
-		if( arg == NULL )
+		if( arg == NULL || root -> next == NULL)
 			return;
 		
 		node* iter = root;
@@ -171,6 +199,9 @@ struct DoublyLinkedList{
 
 
 	void delete_at( int pos){
+		if(root -> next == NULL)
+			return;
+
 		node* iter = root;
 
 		for(int i{0}; iter != NULL ;){
