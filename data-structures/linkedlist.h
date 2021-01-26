@@ -68,15 +68,26 @@ struct LinkedList{
 
 
 	int i{0};
-	void rprint(node* root){
-		if( root == NULL )
+	void reverse(node* iter){
+		if( iter == NULL )
 			return;
 
-		rprint(root->next);
+		reverse(iter->next);
+
+		std::cout <<"node "<<i++<< " : "<< iter->data << std::endl;
+
+	}
+	
+	void reverse(){
+		if( root  == NULL )
+			return;
+
+		reverse(root->next);
 
 		std::cout <<"node "<<i++<< " : "<< root->data << std::endl;
 
 	}
+
 
 	void print(){
 

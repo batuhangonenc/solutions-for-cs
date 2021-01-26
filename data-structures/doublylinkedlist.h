@@ -73,11 +73,21 @@ struct DoublyLinkedList{
 	}
 
 	int i{0};
-	void rprint(node* root){
+	void reverse(node* iter){
+		if( iter == NULL )
+			return;
+
+		reverse(iter->next);
+
+		std::cout << "node " <<i++ << " : "<< iter->data << "\n";
+
+	}
+	
+	void reverse(){
 		if( root == NULL )
 			return;
 
-		rprint(root->next);
+		reverse(root->next);
 
 		std::cout << "node " <<i++ << " : "<< root->data << "\n";
 
