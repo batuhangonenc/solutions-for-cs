@@ -2,7 +2,7 @@
 
 #### Linked List Methods
 
-- self_destruct(), frees all the memory that using by it.
+- erase(), frees all the memory that using by it.
 
 - print (), prints linked list to end by root.
 
@@ -22,7 +22,7 @@
 
 #### Doubly Linked List Methods
 
-- self_destruct(), frees all the memory that using by it.
+- erase(), frees all the memory that using by it.
 
 - print (), prints doubly linked list to end by root.
 
@@ -42,7 +42,7 @@
 
 
 #### Circular Linked List Methods
-- self_destruct(), frees all the memory using by it.
+- erase(), frees all the memory using by it.
 
 - print (), prints circular linked list to end by head.
 

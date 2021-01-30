@@ -1,7 +1,8 @@
-#include<iostream>
-
 #ifndef linkedlist
 #define linkedlist
+
+#include <iostream>
+#include <stdlib.h>
 
 template <typename datatype>
 struct LinkedList{
@@ -53,22 +54,23 @@ struct LinkedList{
 	}
 
 
-	void self_destruct(){
-		if(root -> next == NULL)
-			return;
+	void erase(){
+		node* target;
 
-		while(true){
-			
-			node* iter_deleter = root;
+		for(;;){
 
-			iter_deleter -> data = NULL;
-			iter_deleter -> next = nullptr;
-
+			target = root;
 			if( root -> next == NULL )
+			{
+				free(target);
 				return;
+			}
 
-			root = root -> next;
-
+			else
+			{
+				root = root -> next;
+				free(target);
+			}
 		}
 	}
 
@@ -201,15 +203,14 @@ struct LinkedList{
 
 		node* iter = root;
 
-		for(int i{0}; iter != NULL ;){
+		for(int i{-1}; iter != NULL ;){
 
-			if ( i == pos ){
-				node* deleted = new node;
-				deleted = iter->next;
+			if ( i == pos - 1){
+				node* del = iter -> next;
 
-				iter->next = iter->next->next;
+				iter -> next = iter -> next -> next;
+				free(del);
 
-				delete deleted;
 				return;
 			}
 

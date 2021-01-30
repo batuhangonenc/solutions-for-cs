@@ -1,7 +1,8 @@
-#include <iostream>
-
 #ifndef doublylinkedlist
 #define doublylinkedlist
+
+#include <iostream>
+#include <stdlib.h>
 
 template <typename datatype>
 struct DoublyLinkedList{
@@ -60,23 +61,25 @@ struct DoublyLinkedList{
 		}
 	}
 
-	void self_destruct(){
-		if ( root -> next == NULL )
-			return;
 
-		while(true){
-			node* iter_deleter = root;
+	void erase(){
+		node* target;
 
-			iter_deleter -> data = NULL;
-			iter_deleter -> prev = nullptr;
-			iter_deleter -> next = nullptr;
+		for(;;){
 
-			if( root -> next  == NULL )
-				break;
+			target = root;
+			if( root -> next == NULL )
+			{
+				free(target);
+				return;
+			}
 
-			root = root -> next;
+			else
+			{
+				root = root -> next;
+				free(target);
+			}
 		}
-
 	}
 
 
@@ -207,13 +210,12 @@ struct DoublyLinkedList{
 		for(int i{0}; iter != NULL ;){
 
 			if ( i == pos ){
-				node* deleted = new node;
-				deleted = iter->next;
+				node* del = iter -> next;
 
 				iter->next->next->prev = iter;
 				iter -> next =iter->next->next;
 
-				delete deleted;
+				free(del);
 				return;
 			}
 

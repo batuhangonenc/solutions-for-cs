@@ -2,7 +2,7 @@
 #define circularlinkedlist
 
 #include<iostream>
-
+#include<stdlib.h>
 
 template <typename datatype>
 struct CircularLinkedList{
@@ -22,21 +22,30 @@ struct CircularLinkedList{
 
 	}
 
-	void self_destruct(){
+	void erase(){
 		if ( head -> next == NULL )
 			return;
 
-		while(true){
+		node* start_point = head ;
 
-			node* iter_deleter = head;
+		head = head -> next;
 
-			iter_deleter -> data = NULL;
-			iter_deleter -> next = nullptr;
+		node* target;
 
-			if( head -> next == NULL )
-				break;
+		for(;;){
 
-			head = head -> next;
+			target = head;
+			if( target -> next == start_point )
+			{
+				free(target);
+				return;
+			}
+
+			else
+			{
+				head = head -> next;
+				free(target);
+			}
 		}
 	}
 
@@ -89,25 +98,30 @@ struct CircularLinkedList{
 		}	
 	}
 
-	void delete_elem(int pos){
+	void delete_at(int pos){
 		if(head->next == NULL)
 			return;
 
-		node* iter = head->next;
+		node* iter = head -> next;
+		for(int crr{ -1 } ;; ){
+			
+			if ( iter == head )
+				return;
 
-		int i{0};
-		
-		while( iter->data != NULL && i != pos + 1){
-			iter = iter->next;
-			i++;
+			else if( crr == pos ){
+				node* del = iter -> next;
+
+				iter -> next = iter -> next -> next;
+				free(del);
+				return;
+			}
+
+			else
+			{
+				iter = iter->next;
+				crr++;
+			} 	
 		}
-
-		node* deleted = iter->next;
-
-		iter->next = iter->next->next;
-
-		delete deleted;
-
 	}
 
 	void insert(int pos, node* new_head){
