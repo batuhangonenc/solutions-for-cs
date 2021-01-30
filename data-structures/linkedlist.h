@@ -109,22 +109,16 @@ struct LinkedList{
 
 	}
 
-
 	void print(){
 		if(root -> next == NULL)
 			return;
 
+		node* iter = root -> next; 
 
-		node* iter = root;
-
-		for(int i{0} ;; i++){
-			if ( iter -> next == NULL )
-				return;
-
-			iter = iter->next ;
-			std::cout << "node " << i << " :"<< iter->data << "\n";
-		}
-		std::cout << "\n\n\n";
+		for( int i{0} ; iter != NULL ; i++, iter = iter -> next)
+			std :: cout << "node "<<i << " : "<< iter -> data << std :: endl;
+		
+		std::cout << "\n\n";
 		return;
 	}
 
@@ -183,16 +177,15 @@ struct LinkedList{
 			return;
 
 		node* iter = root;
+		node* new_node = new node;
+
+		new_node -> next = NULL;
+		new_node -> data = arg;
 
 		for(; iter->next != NULL ;)
 			iter = iter->next;
 
-		iter->next = new node;
-
-		iter = iter->next;
-		
-		iter->data = arg;
-		iter->next = NULL;
+		iter -> next = new_node;
 	}
 
 
@@ -203,7 +196,7 @@ struct LinkedList{
 
 		node* iter = root;
 
-		for(int i{-1}; iter != NULL ;){
+		for(int crr{-1}; iter != NULL ;){
 
 			if ( i == pos - 1){
 				node* del = iter -> next;
@@ -216,7 +209,7 @@ struct LinkedList{
 
 			else{
 				iter = iter->next;
-				i++;
+				crr++;
 			}
 		}
 
@@ -238,14 +231,14 @@ struct LinkedList{
 		return;
 	}
 
-	void insert(int pos, node* new_root){
+	void insert( node* new_root, int pos ){
 		if ( new_root -> next == NULL || root -> next == NULL )
 			return;
 
 		node* iter = root;
-		for(int i{0} ; ;){
+		for(int crr{-1} ; ;){
 
-			if( i  == pos ){
+			if( crr == pos - 1){
 				new_root = new_root->next;
 				
 				node* b_iter = iter->next;
@@ -269,7 +262,7 @@ struct LinkedList{
 
 			else{
 				iter = iter->next;
-				i++;
+				crr++;
 			}
 		}
 	}

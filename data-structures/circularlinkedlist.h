@@ -50,21 +50,17 @@ struct CircularLinkedList{
 	}
 
 	void print(){
-		int i{0};
-
-		if( head->next == NULL )
+		if(head -> next == NULL)
 			return;
 
-		head = head -> next;
-		
-		while( head -> data != NULL){
-		std::cout << "node "<<i++<<" : "<< head->data << "\n";
-		head = head->next;
-		}
+		node* iter = head -> next ;
+
+		for( int i{0} ; iter != head; i++, iter = iter -> next)
+			std :: cout << "node "<<i << " : "<< iter -> data << std :: endl;
 		
 		std::cout << "\n\n";
-		
-	 }
+		return;
+	}
 	
 	void push( datatype arg ){
 	

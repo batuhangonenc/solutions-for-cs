@@ -18,7 +18,7 @@
 
 - concat ( node* new_root ), links last node of current list to the new_root.
 
-- insert ( int pos, node* new_root ), links the node in position to the new_root and links the last element of new linked list to next element of the node in position.
+- insert ( node* new_root, int pos ), links the node in position to the new_root and links the last element of new linked list to next element of the node in position.
 
 #### Doubly Linked List Methods
 
@@ -38,7 +38,7 @@
 
 - concat ( node* new_root ), links last node of current list to the new_root.
 
-- insert ( int pos, node* new_root ), links the node in position to the new_root and links the last element of new linked list to next element of the node in position.
+- insert ( node* new_root, int pos ), links the node in position to the new_root and links the last element of new linked list to next element of the node in position.
 
 
 #### Circular Linked List Methods

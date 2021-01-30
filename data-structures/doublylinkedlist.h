@@ -123,16 +123,13 @@ struct DoublyLinkedList{
 		if(root -> next == NULL)
 			return;
 
-		node* iter = root;
+		node* iter = root -> next;
 
-		for(int i{0} ; ; i++){
-			if ( iter -> next == NULL )
-				return;
+		for( int i{0} ; iter != NULL ; i++, iter = iter -> next )
+			std :: cout << "node "<<i << " : "<< iter -> data << std :: endl;
+			
 
-			iter = iter->next ;
-			std::cout << "node " << i << " :"<< iter->data << "\n";
-		}
-		std::cout << "\n\n\n";
+		std::cout << "\n\n";
 		return;
 	}
 
@@ -245,14 +242,14 @@ struct DoublyLinkedList{
 		return;
 	}
 
-	void insert(int pos, node* new_root){
+	void insert( node* new_root, int pos){
 		if( root -> next == NULL || new_root -> next == NULL)
 			return;
 		
 		node* iter = root;
-		for(int i{0} ; ;){
+		for(int crr{-1} ; ;){
 
-			if( i  == pos ){
+			if( crr  == pos - 1 ){
 				new_root = new_root->next;
 
 				node* b_iter = iter->next;
@@ -278,7 +275,7 @@ struct DoublyLinkedList{
 
 			else{
 				iter = iter->next;
-				i++;
+				crr++;
 			}
 		}
 	}
