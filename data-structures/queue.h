@@ -14,7 +14,7 @@ struct queue {
 	};
 
 	int size{0};
-	node* root = new node;
+	node* root = (node*) malloc ( sizeof ( node ));
 
 	queue () {
 		root -> next = NULL;
@@ -26,7 +26,7 @@ struct queue {
 		node* iter = root;
 
 		for ( int i{ 0 } ; i < len ; i++){
-			iter -> next = new node;
+			iter -> next = (node*) malloc ( sizeof ( node ));
 			iter = iter -> next;
 
 			iter -> data = arr[i];
@@ -124,7 +124,7 @@ struct queue {
 		while ( iter -> next != NULL )
 			iter = iter -> next;
 
-		node* new_node = new node;
+		node* new_node = (node*) malloc ( sizeof ( node ));
 
 		new_node -> next = NULL;
 		new_node -> data = arg;

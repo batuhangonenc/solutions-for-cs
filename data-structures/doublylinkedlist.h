@@ -13,7 +13,7 @@ struct DoublyLinkedList{
 		node* prev;
 	};
 
-	node* root = new node;
+	node* root = (node*) malloc ( sizeof( node));
 	
 	DoublyLinkedList(){
 		root -> next = NULL;
@@ -28,7 +28,7 @@ struct DoublyLinkedList{
 		node* iter = root;	
 
 		for(int i{0} ; i < len ; i++){
-			iter->next = new node;
+			iter->next = (node*) malloc ( sizeof( node));
 
 			iter->next->prev = iter;
 			iter = iter->next;	
@@ -50,7 +50,7 @@ struct DoublyLinkedList{
 		node* iter = root;	
 	
 		for(int i{0} ; i < SIZE ; i++){
-			iter->next = new node;
+			iter->next = (node*) malloc ( sizeof( node));
 
 			iter->next->prev = iter;
 			iter = iter->next;
@@ -166,7 +166,7 @@ struct DoublyLinkedList{
 		if( arg == NULL )
 			return;
 
-		node* newnode = new node;
+		node* newnode = (node*) malloc ( sizeof( node));
 
 		newnode->data = arg;
 		newnode->prev = root;
@@ -182,7 +182,7 @@ struct DoublyLinkedList{
 		       return;	
 
 		node* iter = root;
-		node* new_node = new node;
+		node* new_node = (node*) malloc ( sizeof( node));
 
 		for(; iter->next != NULL ;)
 			iter = iter->next;

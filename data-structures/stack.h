@@ -14,7 +14,7 @@ struct stack {
 		node* next;
 	};
 
-	node* root = new node;
+	node* root = (node*) malloc ( sizeof ( node ));
 	int size = 0;
 
 	stack () {
@@ -29,7 +29,7 @@ struct stack {
 		node* iter = root;
 
 		for ( int i{ 0 } ; i < len ; i++){
-			iter -> next = new node;
+			iter -> next = (node*) malloc ( sizeof ( node ));
 			iter = iter -> next;
 
 			iter -> data = NULL;
@@ -44,7 +44,7 @@ struct stack {
 		node* iter = root;
 
 		for( int i { 0 }; i < len ; i++ ){
-			iter -> next = new node;
+			iter -> next = (node*) malloc ( sizeof ( node ));
 			iter = iter -> next;
 
 			iter -> data = arr[i];
@@ -108,7 +108,7 @@ struct stack {
 
 	void push ( dt arg ) {
 		
-		node* new_node = new node;
+		node* new_node = (node*) malloc ( sizeof ( node ));
 
 		new_node -> next = root -> next ;
 		new_node -> data = arg;

@@ -12,7 +12,7 @@ struct LinkedList{
 		node* next;
 	};
 
-	node* root = new node;
+	node* root = (node*) malloc ( sizeof(node));
 
 	LinkedList(){
 		root->next = NULL;
@@ -26,7 +26,7 @@ struct LinkedList{
 		node* iter = root;	
 
 		for(int i{0} ; i < len ; i++){
-			iter->next = new node;
+			iter->next = (node*) malloc ( sizeof(node));
 
 			iter = iter->next;	
 			
@@ -43,7 +43,7 @@ struct LinkedList{
 		node* iter = root;	
 
 		for(int i{0} ; i < SIZE ; i++){
-			iter->next = new node;
+			iter->next = (node*) malloc ( sizeof(node));
 
 			iter = iter->next;
 			
@@ -162,7 +162,7 @@ struct LinkedList{
 		if (arg == NULL)
 		       return;
 
-		node* newnode = new node;
+		node* newnode = (node*) malloc ( sizeof(node));
 
 		newnode->data = arg;
 		newnode->next = root->next;
@@ -177,7 +177,7 @@ struct LinkedList{
 			return;
 
 		node* iter = root;
-		node* new_node = new node;
+		node* new_node = (node*) malloc ( sizeof(node));
 
 		new_node -> next = NULL;
 		new_node -> data = arg;

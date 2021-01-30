@@ -1,7 +1,7 @@
 #ifndef circularlinkedlist
 #define circularlinkedlist
 
-#include<iostream>
+#include<stdio.h>
 #include<stdlib.h>
 
 template <typename datatype>
@@ -12,7 +12,7 @@ struct CircularLinkedList{
 		node* next;
 	};
 
-	node* head = new node;
+	node* head = (node*) malloc(sizeof(node));
 
 	
 	CircularLinkedList(){
@@ -58,7 +58,7 @@ struct CircularLinkedList{
 		for( int i{0} ; iter != head; i++, iter = iter -> next)
 			std :: cout << "node "<<i << " : "<< iter -> data << std :: endl;
 		
-		std::cout << "\n\n";
+		printf("\n\n");
 		return;
 	}
 	
@@ -69,7 +69,7 @@ struct CircularLinkedList{
 		}
 
 		else if( head->next == NULL){
-			node* new_node = new node;
+			node* new_node = (node*) malloc ( sizeof ( node));
 
 			new_node -> data = arg;
 			new_node -> next = head;
@@ -84,7 +84,7 @@ struct CircularLinkedList{
 			while( iter->next->data != NULL )
 				iter = iter->next;
 			
-			node* new_node = new node;
+			node* new_node = (node*) malloc ( sizeof ( node));
 
 			new_node -> data = arg;
 			new_node -> next = head;
