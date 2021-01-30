@@ -77,11 +77,11 @@ struct LinkedList{
 	datatype at(int pos){
 	
 		node* iter = root;
+		int crr{-1};
 
-		int i{0};
-		while(iter->next != NULL && i != pos + 1){
+		while(iter->next != NULL && crr != pos ){
 			iter = iter->next;
-			i++;
+			crr++;
 		}
 		
 		return iter->data;
@@ -123,7 +123,7 @@ struct LinkedList{
 	}
 
 
-	void change_at(int pos, datatype arg){
+	void change_at( datatype arg, int pos ){
 		if(root -> next == NULL)
 			return;
 
@@ -132,14 +132,14 @@ struct LinkedList{
 
 		node* iter = root;
 
-		for(int i{0} ; ;){
+		for(int crr{-1} ; ;){
 			if(iter == NULL){
 				std::cout << "NULL PTR... GUESS WHY\n";
 				break;
 			}
-			
+		
 
-			else if( i - 1 == pos){
+			else if( crr == pos){
 				iter->data = arg;
 				break;
 			}
@@ -147,7 +147,7 @@ struct LinkedList{
 
 			else{
 				iter = iter->next ;
-				i++;
+				crr++;
 			}
 		}
 
@@ -198,7 +198,7 @@ struct LinkedList{
 
 		for(int crr{-1}; iter != NULL ;){
 
-			if ( i == pos - 1){
+			if ( crr == pos - 1){
 				node* del = iter -> next;
 
 				iter -> next = iter -> next -> next;

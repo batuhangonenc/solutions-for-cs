@@ -104,7 +104,7 @@ struct CircularLinkedList{
 			if ( iter == head )
 				return;
 
-			else if( crr == pos ){
+			else if( crr == pos - 2 ){
 				node* del = iter -> next;
 
 				iter -> next = iter -> next -> next;
@@ -120,7 +120,7 @@ struct CircularLinkedList{
 		}
 	}
 
-	void insert(int pos, node* new_head){
+	void insert( node* new_head, int pos ){
 		if( head->next == NULL && new_head -> next != NULL ){
 			head -> next = new_head -> next ;
 			return;

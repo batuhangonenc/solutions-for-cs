@@ -84,15 +84,13 @@ struct DoublyLinkedList{
 
 
 	datatype at(int pos){
-		if(root -> next == NULL)
-			return;
-
+	
 		node* iter = root;
+		int crr{-1};
 
-		int i{0};
-		while(iter->next != NULL && i != pos + 1){
+		while(iter->next != NULL && crr != pos ){
 			iter = iter->next;
-			i++;
+			crr++;
 		}
 		
 		return iter->data;
@@ -134,20 +132,20 @@ struct DoublyLinkedList{
 	}
 
 
-	void change_at(int pos, datatype arg){
+	void change_at( datatype arg, int pos ){
 		if( arg == NULL || root -> next == NULL)
 			return;
 		
 		node* iter = root;
 
-		for(int i{0} ; ;){
+		for(int crr{-1} ; ;){
 			if(iter == NULL){
 				std::cout << "NULL PTR... GUESS WHY\n";
 				break;
 			}
 			
 
-			else if( i - 1 == pos){
+			else if( crr == pos){
 				iter->data = arg;
 				break;
 			}
@@ -155,7 +153,7 @@ struct DoublyLinkedList{
 
 			else{
 				iter = iter->next ;
-				i++;
+				crr++;
 			}
 		}
 
@@ -184,17 +182,16 @@ struct DoublyLinkedList{
 		       return;	
 
 		node* iter = root;
+		node* new_node = new node;
 
 		for(; iter->next != NULL ;)
 			iter = iter->next;
 
-		iter->next = new node;
+		new_node -> next = NULL;
+		new_node -> data = arg;
+		new_node -> prev = iter;
 
-		iter->next->prev = iter;
-		iter = iter->next;
-		
-		iter->data = arg;
-		iter->next = NULL;
+		iter -> next = new_node;		
 	}
 
 
@@ -204,9 +201,9 @@ struct DoublyLinkedList{
 
 		node* iter = root;
 
-		for(int i{0}; iter != NULL ;){
+		for(int crr{-1}; iter != NULL ;){
 
-			if ( i == pos ){
+			if ( crr == pos - 1){
 				node* del = iter -> next;
 
 				iter->next->next->prev = iter;
@@ -218,7 +215,7 @@ struct DoublyLinkedList{
 
 			else{
 				iter = iter->next;
-				i++;
+				crr++;
 			}
 		}
 

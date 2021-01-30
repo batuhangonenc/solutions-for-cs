@@ -28,7 +28,7 @@
 
 - reverse (), prints doubly linked list to root by end.
 
-- change_at ( int pos, datatype arg ), changes the value of node in the position to given arg.
+- change_at ( datatype arg, int pos ), changes the value of node in the position to given arg.
 
 - push_front ( datatype arg ), adds a node with arg to front of the list.
 
@@ -50,4 +50,4 @@
 
 - delete_at ( int pos ), removes the node in position from circular linked list.
 
-- insert ( int pos, node* new_head ), links the node in position to new_head and links the last element of new circular or normal linked list to the next element of the node in position. 
+- insert ( node* new_head, int pos ), links the node in position to new_head and links the last element of new circular or normal linked list to the next element of the node in position. 
