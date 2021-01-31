@@ -10,6 +10,8 @@
 
 - change_at ( int pos, datatype arg ), changes the value of node in the position to given arg.
 
+- void swap ( int pos1, int pos2 ), assign the data in pos1 to pos2, and pos2 to pos1.
+
 - push_front ( datatype arg ), adds a node with arg to front of the list.
 
 - push_end ( datatype arg ), adds a node with arg to end of the list.

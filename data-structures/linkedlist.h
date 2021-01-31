@@ -267,6 +267,43 @@ struct LinkedList{
 		}
 	}
 
+	void swap ( int pos1, int pos2 ) {
+		node* iter = root;
+		dt holder_1, holder_2;
+
+		for ( int crr{ -1};; ) {
+			if ( crr == pos1 ){ 
+				holder_1 = iter -> data;
+				
+				iter = iter -> next;
+				crr++;
+			}
+			else if ( crr == pos2 ){
+				holder_2 = iter -> data;
+				iter -> data = holder_1;
+				break;
+			}
+
+			else {
+				iter = iter -> next;
+				crr++;
+			}
+		}
+	
+		iter = root;
+		for ( int crr{ -1};; ) {
+			if ( crr == pos1 ) {
+				iter -> data = holder_2;
+				return;
+			}
+
+			else {
+				iter = iter -> next;
+				crr++;
+			}
+		}
+	}
+
 	
 };
 #endif
