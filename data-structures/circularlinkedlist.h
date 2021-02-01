@@ -5,7 +5,7 @@
 #include<stdlib.h>
 
 template <typename datatype>
-struct CircularLinkedList{
+struct CircularLinkedList {
 
 	struct node {
 		datatype data;
@@ -15,14 +15,14 @@ struct CircularLinkedList{
 	node* head = (node*) malloc(sizeof(node));
 
 	
-	CircularLinkedList(){
+	CircularLinkedList () {
 	
 	head->data = NULL;
 	head->next = NULL;
 
 	}
 
-	void erase(){
+	void erase () {
 		if ( head -> next == NULL )
 			return;
 
@@ -32,7 +32,7 @@ struct CircularLinkedList{
 
 		node* target;
 
-		for(;;){
+		for(;;) {
 
 			target = head;
 			if( target -> next == start_point )
@@ -49,7 +49,7 @@ struct CircularLinkedList{
 		}
 	}
 
-	void print(){
+	void print () {
 		if(head -> next == NULL)
 			return;
 
@@ -62,7 +62,7 @@ struct CircularLinkedList{
 		return;
 	}
 	
-	void push( datatype arg ){
+	void push ( datatype arg ) {
 	
 		if( arg == NULL){
 			return;
@@ -94,7 +94,7 @@ struct CircularLinkedList{
 		}	
 	}
 
-	void delete_at(int pos){
+	void delete_at (int pos) {
 		if(head->next == NULL)
 			return;
 
@@ -120,7 +120,7 @@ struct CircularLinkedList{
 		}
 	}
 
-	void insert( node* new_head, int pos ){
+	void insert ( node* new_head, int pos ) {
 		if( head->next == NULL && new_head -> next != NULL ){
 			head -> next = new_head -> next ;
 			return;

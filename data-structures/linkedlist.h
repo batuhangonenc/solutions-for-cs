@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 template <typename datatype>
-struct LinkedList{
+struct LinkedList {
 
 	struct node {
 		datatype data;
@@ -14,12 +14,12 @@ struct LinkedList{
 
 	node* root = (node*) malloc ( sizeof(node));
 
-	LinkedList(){
+	LinkedList () {
 		root->next = NULL;
 		root->data = NULL;
 	}
 
-	LinkedList(int len){
+	LinkedList ( int len ) {
 		root -> data = NULL;
 		root -> next = NULL;
 
@@ -36,25 +36,24 @@ struct LinkedList{
 		}
 	}
 
-	LinkedList(datatype* arr, int SIZE){
+	LinkedList( datatype* arr, int SIZE ) {
 		root -> data = NULL;
 		root -> next == NULL;
 		
 		node* iter = root;	
 
-		for(int i{0} ; i < SIZE ; i++){
+		for ( int i{0} ; i < SIZE ; i++ ) {
 			iter->next = (node*) malloc ( sizeof(node));
 
 			iter = iter->next;
 			
 			iter->data = arr[i];
 			iter->next = NULL;
-
 		}
 	}
 
 
-	void erase(){
+	void erase () {
 		node* target;
 
 		for(;;){
@@ -74,12 +73,12 @@ struct LinkedList{
 		}
 	}
 
-	datatype at(int pos){
+	datatype at ( int pos ) {
 	
 		node* iter = root;
 		int crr{-1};
 
-		while(iter->next != NULL && crr != pos ){
+		while ( iter->next != NULL && crr != pos ) {
 			iter = iter->next;
 			crr++;
 		}
@@ -88,8 +87,8 @@ struct LinkedList{
 	}
 
 
-	int i{0};
-	void reverse(node* iter){
+	int i{0}; 
+	void reverse ( node* iter ) {
 		if( iter == NULL )
 			return;
 
@@ -110,12 +109,12 @@ struct LinkedList{
 	}
 
 	void print(){
-		if(root -> next == NULL)
+		if ( root -> next == NULL )
 			return;
 
 		node* iter = root -> next; 
 
-		for( int i{0} ; iter != NULL ; i++, iter = iter -> next)
+		for ( int i{0} ; iter != NULL ; i++, iter = iter -> next)
 			std :: cout << "node "<<i << " : "<< iter -> data << std :: endl;
 		
 		std::cout << "\n\n";
@@ -123,7 +122,7 @@ struct LinkedList{
 	}
 
 
-	void change_at( datatype arg, int pos ){
+	void change_at( datatype arg, int pos ) {
 		if(root -> next == NULL)
 			return;
 
@@ -132,20 +131,20 @@ struct LinkedList{
 
 		node* iter = root;
 
-		for(int crr{-1} ; ;){
-			if(iter == NULL){
+		for ( int crr{-1} ; ;){
+			if ( iter == NULL ) {
 				std::cout << "NULL PTR... GUESS WHY\n";
 				break;
 			}
 		
 
-			else if( crr == pos){
+			else if ( crr == pos ) {
 				iter->data = arg;
 				break;
 			}
 			
 
-			else{
+			else {
 				iter = iter->next ;
 				crr++;
 			}
@@ -158,7 +157,7 @@ struct LinkedList{
 
 
 
-	void push_front(datatype arg){
+	void push_front ( datatype arg ) {
 		if (arg == NULL)
 		       return;
 
@@ -172,7 +171,7 @@ struct LinkedList{
 		return;
 	}
 
-	void push_end(datatype arg){
+	void push_end ( datatype arg ) {
 		if( arg == NULL )
 			return;
 
@@ -182,14 +181,14 @@ struct LinkedList{
 		new_node -> next = NULL;
 		new_node -> data = arg;
 
-		for(; iter->next != NULL ;)
+		for (; iter->next != NULL ;)
 			iter = iter->next;
 
 		iter -> next = new_node;
 	}
 
 
-	void delete_at( int pos){
+	void delete_at( int pos ) {
 		if(root -> next == NULL)
 			return;
 
@@ -218,34 +217,34 @@ struct LinkedList{
 	}
 
 
-	void concat(node* new_root){
+	void concat ( node* new_root ) {
 		if ( new_root -> next == NULL)
 			return;
 
 		node* iter = root;
 
-		for(; iter->next != NULL ;)
+		for (; iter->next != NULL ;)
 			iter = iter->next;
 
 		iter -> next = new_root -> next;
 		return;
 	}
 
-	void insert( node* new_root, int pos ){
+	void insert ( node* new_root, int pos ) {
 		if ( new_root -> next == NULL || root -> next == NULL )
 			return;
 
 		node* iter = root;
-		for(int crr{-1} ; ;){
+		for ( int crr{-1} ; ;){
 
-			if( crr == pos - 1){
+			if ( crr == pos - 1) {
 				new_root = new_root->next;
 				
 				node* b_iter = iter->next;
 
 				iter->next = new_root;
 
-				while( new_root->next != NULL ){
+				while ( new_root->next != NULL ){
 					new_root = new_root->next;
 				}
 
@@ -254,13 +253,13 @@ struct LinkedList{
 
 			}
 
-			else if( iter->next == NULL){
+			else if ( iter->next == NULL) {
 				concat(new_root);
 				return;
 			}
 
 
-			else{
+			else {
 				iter = iter->next;
 				crr++;
 			}
@@ -269,7 +268,7 @@ struct LinkedList{
 
 	void swap ( int pos1, int pos2 ) {
 		node* iter = root;
-		dt holder_1, holder_2;
+		datatype holder_1, holder_2;
 
 		for ( int crr{ -1};; ) {
 			if ( crr == pos1 ){ 

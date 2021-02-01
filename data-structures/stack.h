@@ -5,12 +5,12 @@
 #include <stdlib.h>
 
 
-template <typename dt>
+template <typename datatype>
 
 struct stack {
 	
 	struct node {
-		dt data;
+		datatype data;
 		node* next;
 	};
 
@@ -37,7 +37,7 @@ struct stack {
 		}
 	}
 
-	stack ( dt* arr, int len ){
+	stack ( datatype* arr, int len ){
 		root -> next = NULL;
 		root -> data = NULL;
 
@@ -92,8 +92,8 @@ struct stack {
 		return;
 	}
 
-	dt top () {
-		return ( dt )( root -> next -> data );
+	datatype top () {
+		return ( datatype )( root -> next -> data );
 	}
 
 	void pop () {
@@ -106,7 +106,7 @@ struct stack {
 		return;
 	}
 
-	void push ( dt arg ) {
+	void push ( datatype arg ) {
 		
 		node* new_node = (node*) malloc ( sizeof ( node ));
 
@@ -121,7 +121,7 @@ struct stack {
 
 	void swap ( int pos1, int pos2 ) {
 		node* iter = root;
-		dt holder_1, holder_2;
+		datatype holder_1, holder_2;
 
 		for ( int crr{ -1};; ) {
 			if ( crr == pos1 ){ 

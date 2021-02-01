@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 template <typename datatype>
-struct DoublyLinkedList{
+struct DoublyLinkedList {
 
 	struct node {
 		datatype data;
@@ -15,12 +15,12 @@ struct DoublyLinkedList{
 
 	node* root = (node*) malloc ( sizeof( node));
 	
-	DoublyLinkedList(){
+	DoublyLinkedList () {
 		root -> next = NULL;
 		root -> prev = nullptr;
 	}
 
-	DoublyLinkedList(int len){
+	DoublyLinkedList (int len) {
 		root -> prev = nullptr;
 		root -> data = NULL;
 		root -> next = NULL;
@@ -40,7 +40,7 @@ struct DoublyLinkedList{
 	}
 
 
-	DoublyLinkedList(datatype* arr, int SIZE){
+	DoublyLinkedList (datatype* arr, int SIZE) {
 
 		root -> prev = nullptr;
 		root -> data = NULL;
@@ -62,13 +62,13 @@ struct DoublyLinkedList{
 	}
 
 
-	void erase(){
+	void erase () {
 		node* target;
 
 		for(;;){
 
 			target = root;
-			if( root -> next == NULL )
+			if ( root -> next == NULL )
 			{
 				free(target);
 				return;
@@ -83,12 +83,12 @@ struct DoublyLinkedList{
 	}
 
 
-	datatype at(int pos){
+	datatype at (int pos) {
 	
 		node* iter = root;
 		int crr{-1};
 
-		while(iter->next != NULL && crr != pos ){
+		while (iter->next != NULL && crr != pos ) {  
 			iter = iter->next;
 			crr++;
 		}
@@ -97,7 +97,7 @@ struct DoublyLinkedList{
 	}
 
 	int i{0};
-	void reverse(node* iter){
+	void reverse (node* iter) {
 		if( iter == NULL )
 			return;
 
@@ -107,7 +107,7 @@ struct DoublyLinkedList{
 
 	}
 	
-	void reverse(){
+	void reverse () {
 		if( root == NULL )
 			return;
 
@@ -117,7 +117,7 @@ struct DoublyLinkedList{
 
 	}
 
-	void print(){
+	void print () {
 		if(root -> next == NULL)
 			return;
 
@@ -132,20 +132,20 @@ struct DoublyLinkedList{
 	}
 
 
-	void change_at( datatype arg, int pos ){
+	void change_at ( datatype arg, int pos ) { 
 		if( arg == NULL || root -> next == NULL)
 			return;
 		
 		node* iter = root;
 
-		for(int crr{-1} ; ;){
-			if(iter == NULL){
+		for ( int crr{-1} ; ;) {
+			if( iter == NULL ) {
 				std::cout << "NULL PTR... GUESS WHY\n";
 				break;
 			}
 			
 
-			else if( crr == pos){
+			else if ( crr == pos ) {
 				iter->data = arg;
 				break;
 			}
@@ -162,7 +162,7 @@ struct DoublyLinkedList{
 	}
 
 
-	void push_front(datatype arg){
+	void push_front ( datatype arg ) {
 		if( arg == NULL )
 			return;
 
@@ -177,14 +177,14 @@ struct DoublyLinkedList{
 		return;
 	}
 
-	void push_end(datatype arg){
+	void push_end ( datatype arg ) {
 		if ( arg == NULL )
 		       return;	
 
 		node* iter = root;
 		node* new_node = (node*) malloc ( sizeof( node));
 
-		for(; iter->next != NULL ;)
+		for (; iter->next != NULL ;)
 			iter = iter->next;
 
 		new_node -> next = NULL;
@@ -195,25 +195,25 @@ struct DoublyLinkedList{
 	}
 
 
-	void delete_at( int pos){
+	void delete_at ( int pos) {
 		if(root -> next == NULL)
 			return;
 
 		node* iter = root;
 
-		for(int crr{-1}; iter != NULL ;){
+		for ( int crr{-1}; iter != NULL ; ){
 
-			if ( crr == pos - 1){
+			if ( crr == pos - 1 ) {
 				node* del = iter -> next;
 
 				iter->next->next->prev = iter;
 				iter -> next =iter->next->next;
 
-				free(del);
+				free( del );
 				return;
 			}
 
-			else{
+			else {
 				iter = iter->next;
 				crr++;
 			}
@@ -224,8 +224,8 @@ struct DoublyLinkedList{
 	}
 
 
-	void concat(node* new_root){
-		if ( new_root -> next == NULL)
+	void concat ( node* new_root ) {
+		if ( new_root -> next == NULL )
 			return;
 
 		node* iter = root;
@@ -239,12 +239,12 @@ struct DoublyLinkedList{
 		return;
 	}
 
-	void insert( node* new_root, int pos){
+	void insert ( node* new_root, int pos ) {
 		if( root -> next == NULL || new_root -> next == NULL)
 			return;
 		
 		node* iter = root;
-		for(int crr{-1} ; ;){
+		for ( int crr{-1} ; ;){
 
 			if( crr  == pos - 1 ){
 				new_root = new_root->next;
@@ -254,7 +254,7 @@ struct DoublyLinkedList{
 				new_root -> prev = iter;
 				iter->next = new_root;
 
-				while( new_root->next != NULL ){
+				while ( new_root->next != NULL ) {
 					new_root = new_root ->next;
 				}
 
@@ -264,13 +264,13 @@ struct DoublyLinkedList{
 
 			}
 
-			else if( iter->next == NULL){
+			else if ( iter->next == NULL) {
 				concat(new_root);
 				return;
 			}
 
 
-			else{
+			else {
 				iter = iter->next;
 				crr++;
 			}

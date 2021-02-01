@@ -4,12 +4,12 @@
 #include <iostream>
 #include <stdlib.h>
 
-//dt == data type
-template <typename dt>
+template <typename datatype>
 struct queue {
 
 	struct node {
-		dt data;
+		datatype
+	 data;
 		node* next;
 	};
 
@@ -20,7 +20,8 @@ struct queue {
 		root -> next = NULL;
 	}
 
-	queue ( dt* arr, int len ) {
+	queue ( datatype
+	* arr, int len ) {
 
 		root -> next = NULL;
 		node* iter = root;
@@ -69,7 +70,8 @@ struct queue {
 
 	void swap ( int pos1, int pos2 ) {
 		node* iter = root;
-		dt holder_1, holder_2;
+		datatype
+	 holder_1, holder_2;
 
 		for ( int crr{ -1};; ) {
 			if ( crr == pos1 ){ 
@@ -105,20 +107,25 @@ struct queue {
 	}
 
 
-	dt front () {
-		return ( dt )(root -> next -> data);
+	datatype
+ front () {
+		return ( datatype
+	 )(root -> next -> data);
 	}
 
-	dt back () {
+	datatype
+ back () {
 		node* iter = root;
 
 		while ( iter -> next != NULL )
 			iter = iter -> next;
 
-		return ( dt )( iter -> data );
+		return ( datatype
+	 )( iter -> data );
 	}
 
-	void push ( dt arg ) {
+	void push ( datatype
+ arg ) {
 		node* iter = root;
 
 		while ( iter -> next != NULL )
