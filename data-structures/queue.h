@@ -20,8 +20,7 @@ struct queue {
 		root -> next = NULL;
 	}
 
-	queue ( datatype
-	* arr, int len ) {
+	queue ( datatype* arr, int len ) {
 
 		root -> next = NULL;
 		node* iter = root;
@@ -107,25 +106,20 @@ struct queue {
 	}
 
 
-	datatype
- front () {
-		return ( datatype
-	 )(root -> next -> data);
+	datatype front () {
+		return ( datatype )(root -> next -> data);
 	}
 
-	datatype
- back () {
+	datatype back () {
 		node* iter = root;
 
 		while ( iter -> next != NULL )
 			iter = iter -> next;
 
-		return ( datatype
-	 )( iter -> data );
+		return ( datatype )( iter -> data );
 	}
 
-	void push ( datatype
- arg ) {
+	void push ( datatype arg ) {
 		node* iter = root;
 
 		while ( iter -> next != NULL )

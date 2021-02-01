@@ -2,27 +2,31 @@
 
 #### Linked List Methods
 
-- erase (), frees all the memory that using by it.
+- datatype at ( int pos ), returns the value stored in the node in position.
 
-- print (), prints linked list to end by root.
+- void erase (), frees all the memory that using by it.
 
-- reverse (), prints linked list to root by end.
+- void print (), prints linked list to end by root.
 
-- change_at ( int pos, datatype arg ), changes the value of node in the position to given arg.
+- void reverse (), prints linked list to root by end.
+
+- void change_at ( int pos, datatype arg ), changes the value of node in the position to given arg.
 
 - void swap ( int pos1, int pos2 ), assign the data in pos1 to pos2, and pos2 to pos1.
 
-- push_front ( datatype arg ), adds a node with arg to front of the list.
+- void push_front ( datatype arg ), adds a node with arg to front of the list.
 
-- push_end ( datatype arg ), adds a node with arg to end of the list.
+- void push_end ( datatype arg ), adds a node with arg to end of the list.
 
-- delete_at ( int pos ), deletes the node in position from list. 
+- void delete_at ( int pos ), deletes the node in position from list. 
 
-- concat ( node* new_root ), links last node of current list to the new_root.
+- void concat ( node* new_root ), links last node of current list to the new_root.
 
-- insert ( node* new_root, int pos ), links the node in position to the new_root and links the last element of new linked list to next element of the node in position.
+- void insert ( node* new_root, int pos ), links the node in position to the new_root and links the last element of new linked list to next element of the node in position.
 
 #### Doubly Linked List Methods
+
+- datatype at ( int pos ), returns the value stored in the node in position.
 
 - void erase (), frees all the memory that using by it.
 
@@ -68,7 +72,7 @@
 
 - bool is_empty (), tells whether the stack empty.  
 
-- dt top (), gives the data at the node in top.
+- datatype top (), gives the data at the node in top.
 
 #### Queue(FIFO) Methods
 
@@ -82,6 +86,6 @@
 
 - void swap ( int pos1, int pos2 ), assign the data in pos1 to pos2, and pos2 to pos1.
 
-- dt front (), gives the data at the next node.  
+- datatype front (), gives the data at the next node.  
 
-- dt back (), gives the data at the last node.
+- datatype back (), gives the data at the last node.

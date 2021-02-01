@@ -83,7 +83,7 @@ struct DoublyLinkedList {
 	}
 
 
-	datatype at (int pos) {
+	datatype at ( int pos ) {
 	
 		node* iter = root;
 		int crr{-1};
