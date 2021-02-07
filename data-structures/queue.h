@@ -5,14 +5,13 @@
 #include <stdlib.h>
 
 template <typename datatype>
-struct queue {
-
+class queue {
+private:
 	struct node {
-		datatype
-	 data;
+		datatype data;
 		node* next;
 	};
-
+public:
 	int size{0};
 	node* root = (node*) malloc ( sizeof ( node ));
 

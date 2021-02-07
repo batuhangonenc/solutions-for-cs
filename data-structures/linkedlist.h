@@ -5,13 +5,13 @@
 #include <stdlib.h>
 
 template <typename datatype>
-struct LinkedList {
-
+class LinkedList {
+private:
 	struct node {
 		datatype data;
 		node* next;
 	};
-
+public:
 	node* root = (node*) malloc ( sizeof(node));
 
 	LinkedList () {

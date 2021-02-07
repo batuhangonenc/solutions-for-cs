@@ -5,14 +5,14 @@
 #include <stdlib.h>
 
 template <typename datatype>
-struct DoublyLinkedList {
-
+class DoublyLinkedList {
+private:
 	struct node {
 		datatype data;
 		node* next;
 		node* prev;
 	};
-
+public:
 	node* root = (node*) malloc ( sizeof( node));
 	
 	DoublyLinkedList () {

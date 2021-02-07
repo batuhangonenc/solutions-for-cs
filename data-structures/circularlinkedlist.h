@@ -5,15 +5,15 @@
 #include<stdlib.h>
 
 template <typename datatype>
-struct CircularLinkedList {
-
+class CircularLinkedList {
+private:
 	struct node {
 		datatype data;
 		node* next;
 	};
 
+public:
 	node* head = (node*) malloc(sizeof(node));
-
 	
 	CircularLinkedList () {
 	

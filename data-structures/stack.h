@@ -7,13 +7,13 @@
 
 template <typename datatype>
 
-struct stack {
-	
+class stack {
+private:
 	struct node {
 		datatype data;
 		node* next;
 	};
-
+public:
 	node* root = (node*) malloc ( sizeof ( node ));
 	int size = 0;
 
