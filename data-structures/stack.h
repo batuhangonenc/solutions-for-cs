@@ -14,7 +14,7 @@ private:
 		node* next;
 	};
 public:
-	node* root = (node*) malloc ( sizeof ( node ));
+	node* const root = (node*) malloc ( sizeof ( node ));
 	int size = 0;
 
 	stack () {
@@ -53,7 +53,7 @@ public:
 		}
 	}
 
-	bool is_empty () {
+	bool is_empty () const {
 		if ( root -> next == NULL )
 			return true;
 		return false;
@@ -79,7 +79,7 @@ public:
 		}
 	}
 
-	void print () {
+	void print () const {
 		if(root -> next == NULL)
 			return;
 
@@ -92,7 +92,7 @@ public:
 		return;
 	}
 
-	datatype top () {
+	datatype top () const {
 		return ( datatype )( root -> next -> data );
 	}
 
