@@ -12,7 +12,7 @@ private:
 		node* next;
 	};
 public:
-	node* root = (node*) malloc ( sizeof(node));
+	node* const root = (node*) malloc ( sizeof(node));
 
 	LinkedList () {
 		root->next = NULL;
@@ -73,7 +73,7 @@ public:
 		}
 	}
 
-	datatype at ( int pos ) {
+	datatype at ( int pos ) const {
 	
 		node* iter = root;
 		int crr{-1};
@@ -98,7 +98,7 @@ public:
 
 	}
 	
-	void reverse(){
+	void reverse () {
 		if( root  == NULL )
 			return;
 
@@ -108,7 +108,7 @@ public:
 
 	}
 
-	void print(){
+	void print () const {
 		if ( root -> next == NULL )
 			return;
 
@@ -122,7 +122,7 @@ public:
 	}
 
 
-	void change_at( datatype arg, int pos ) {
+	void change_at ( datatype arg, int pos ) {
 		if(root -> next == NULL)
 			return;
 
