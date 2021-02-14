@@ -50,7 +50,7 @@ public:
 		}
 	}
 
-	void print () {
+	void print () const {
 		if ( root -> next == NULL )
 			return;
 
@@ -105,11 +105,11 @@ public:
 	}
 
 
-	datatype front () {
+	datatype front () const {
 		return ( datatype )(root -> next -> data);
 	}
 
-	datatype back () {
+	datatype back () const {
 		node* iter = root;
 
 		while ( iter -> next != NULL )
@@ -134,12 +134,11 @@ public:
 	}
 
 	void pop () {
-		node* iter = root;
-
-		while ( iter -> next -> next != NULL )
-			iter = iter -> next;
-
-		free ( iter -> next );
+		node* target = root -> next;
+		
+		root -> next = root -> next -> next;
+		
+		free ( target );
 		return;		
 	}
 
