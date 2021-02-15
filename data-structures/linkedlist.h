@@ -119,6 +119,7 @@ public:
 		}
 	}
 
+	// operator overloading
 
 	void operator=( LinkedList&& ll ) {
 		erase();
@@ -165,6 +166,14 @@ public:
 		}	
 	}
 
+	datatype operator[]( const int& i ) const {
+		return (datatype) at( i );
+	}
+
+	datatype operator[]( int&& i ) const {
+		return (datatype) at( i );
+	}
+	//----
 	~LinkedList() {
 		if (!erase_called)
 			erase();

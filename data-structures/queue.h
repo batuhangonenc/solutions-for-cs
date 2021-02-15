@@ -109,6 +109,14 @@ public:
 		size = q.size;
 	}
 
+	datatype operator[]( const int& i ) const {
+		return (datatype) at( i );
+	}
+
+	datatype operator[]( int&& i ) const {
+		return (datatype) at( i );
+	}
+
 
 	void print () {
 		if ( root -> next == nullptr )

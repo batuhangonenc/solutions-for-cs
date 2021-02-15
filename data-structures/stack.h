@@ -131,6 +131,14 @@ public:
 		size = s.size;
 	}
 
+	datatype operator[]( const int& i ) const {
+		return (datatype) at( i );
+	}
+
+	datatype operator[]( int&& i ) const {
+		return (datatype) at( i );
+	}
+
 	bool is_empty () const {
 		if ( root -> next == nullptr )
 			return true;
@@ -167,7 +175,7 @@ public:
 	datatype top () const {
 		if ( root == NULL || root -> next == NULL )
 			return NULL;
-		
+
 		return ( datatype )( root -> next -> data );
 	}
 
