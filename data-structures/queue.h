@@ -164,18 +164,21 @@ public:
 	}
 
 	datatype front() const {
-		return (datatype)(root -> next -> data);
+		return ( datatype )(root -> next -> data);
 	}
 
-	void pop() {
-		node* deleted = root -> next;
+	datatype back() const {
+		if ( root == NULL || root -> next == NULL )
+			return NULL;
 
-		root -> next = root->next->next;
-		delete deleted;
-		return;
+		node* iter = root;
+		while ( iter -> next != NULL )
+			iter = iter -> next;
+
+		return iter -> data;
 	}
 
-
+	
 	void push( datatype arg ) {
 		if ( root-> next == nullptr )
 			return;
@@ -207,6 +210,16 @@ public:
 		}
 
 		return iter -> data;
+	}
+
+	void pop () {
+		node* target = root -> next;
+		
+		root -> next = root -> next -> next;
+		
+		free ( target );
+		return;		
+
 	}
 
 };

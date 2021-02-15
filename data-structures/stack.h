@@ -14,7 +14,9 @@ private:
 	};
 
 public:
+
 	node* root = new node;
+
 	int size = 0;
 
 	stack () {
@@ -54,6 +56,7 @@ public:
 			++size;
 		}
 	}
+
 
 	void erase () {
 		if ( root -> next == nullptr )
@@ -147,6 +150,7 @@ public:
 		return iter->data;
 	}
 
+
 	void print () {
 		if(root -> next == nullptr)
 			return;
@@ -161,6 +165,9 @@ public:
 	}
 
 	datatype top () const {
+		if ( root == NULL || root -> next == NULL )
+			return NULL;
+		
 		return ( datatype )( root -> next -> data );
 	}
 

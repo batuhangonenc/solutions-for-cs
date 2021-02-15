@@ -119,6 +119,7 @@ public:
 		}
 	}
 
+
 	void operator=( LinkedList&& ll ) {
 		erase();
 		erase_called = false;
@@ -170,7 +171,6 @@ public:
 	}
 
 	
-
 	datatype at ( int pos ) const {
 	
 		node* iter = root;
@@ -196,8 +196,8 @@ public:
 
 	}
 	
-	void reverse(){
-		if( root  == nullptr )
+	void reverse () {
+		if( root  == NULL )
 			return;
 
 		reverse(root->next);
@@ -205,6 +205,7 @@ public:
 		std::cout <<"node "<<i++<< " : "<< root->data << std::endl;
 
 	}
+
 
 	void print() {
 		if ( root -> next == nullptr )
@@ -220,10 +221,11 @@ public:
 	}
 
 
+
 	void change_at( datatype arg, int pos ) {
 		if(root -> next == nullptr)
 			return;
-
+		
 		if( arg == NULL )
 			return;
 

@@ -13,7 +13,7 @@ private:
 	};
 
 public:
-	node* head = (node*) malloc(sizeof(node));
+	node* const head = (node*) malloc(sizeof(node));
 	
 	CircularLinkedList () {
 	
@@ -49,7 +49,7 @@ public:
 		}
 	}
 
-	void print () {
+	void print () const {
 		if(head -> next == NULL)
 			return;
 

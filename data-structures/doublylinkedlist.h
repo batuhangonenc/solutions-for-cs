@@ -13,7 +13,7 @@ private:
 		node* prev;
 	};
 public:
-	node* root = (node*) malloc ( sizeof( node));
+	node* const root = (node*) malloc ( sizeof( node));
 	
 	DoublyLinkedList () {
 		root -> next = NULL;
@@ -83,8 +83,8 @@ public:
 	}
 
 
-	datatype at ( int pos ) {
-	
+	datatype at ( int pos ) const {
+	 
 		node* iter = root;
 		int crr{-1};
 
@@ -117,7 +117,7 @@ public:
 
 	}
 
-	void print () {
+	void print () const {
 		if(root -> next == NULL)
 			return;
 
