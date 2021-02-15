@@ -2,62 +2,122 @@
 #define QUEUE_H_
 
 #include <iostream>
-#include <stdlib.h>
 
 template <typename datatype>
 class queue {
 private:
+	bool erase_called = false;
 	struct node {
 		datatype data;
 		node* next;
 	};
 public:
 	int size{0};
-	node* root = (node*) malloc ( sizeof ( node ));
+	node* root = new node;
 
 	queue () {
-		root -> next = NULL;
+		root -> next = nullptr;
 	}
 
-	queue ( datatype* arr, int len ) {
+	queue ( const datatype* arr, int len ) {
 
-		root -> next = NULL;
+		root -> next = nullptr;
 		node* iter = root;
 
 		for ( int i{ 0 } ; i < len ; i++){
-			iter -> next = (node*) malloc ( sizeof ( node ));
+			iter -> next = new node;
 			iter = iter -> next;
 
 			iter -> data = arr[i];
-			iter -> next = NULL;
+			iter -> next = nullptr;
 		}
+
+		size = len;
 	}
 
 	void erase () {
+		if ( root == NULL || root -> next == NULL )
+			return;
+
 		node* target;
 
 		for ( ;; ) {
 			target = root;
 			if ( root -> next == NULL ){
-				free ( target );
+				delete target;
 				return;
 			}
 
 			else {
 				root = root -> next;
-				free ( target );
+				delete target;
 			}
 		}
+
+		erase_called = true;
 	}
 
+	queue ( const queue& q ) {
+		if ( q.root == NULL || q.root -> next == NULL ) {
+			queue();
+			return;
+		}
+
+		node* iter = root;
+		for ( int i{0} ; i < q.size ; ++i ) {
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = q.at(i);
+			iter -> next = nullptr;
+		}	
+		size = q.size;
+	}
+
+	queue ( const queue&& q ) {
+		root = q.root;
+		size = q.size;
+	}
+
+	~queue() {
+		if ( !erase_called )
+			erase();
+	}
+	
+
+	void operator=( const queue& q ) {
+		erase();
+		erase_called = false;
+
+		node* iter = root;
+		for ( int i{0} ; i < q.size ; ++i ) {
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = q.at(i);
+			iter -> next = nullptr;
+		}	
+		size = q.size;
+	}
+
+
+	void operator=( const queue&& q ) {
+		erase();
+		erase_called = false;
+
+		root = q.root;
+		size = q.size;
+	}
+
+
 	void print () {
-		if ( root -> next == NULL )
+		if ( root -> next == nullptr )
 			return;
 
 		node* iter = root -> next;
 		int i { 0} ;
 
-		while ( iter != NULL ){
+		while ( iter != nullptr ){
 			std :: cout << "node " << i++ << " : " << iter -> data << "\n";
 			iter = iter -> next;
 		}
@@ -68,8 +128,7 @@ public:
 
 	void swap ( int pos1, int pos2 ) {
 		node* iter = root;
-		datatype
-	 holder_1, holder_2;
+		datatype holder_1, holder_2;
 
 		for ( int crr{ -1};; ) {
 			if ( crr == pos1 ){ 
@@ -104,43 +163,50 @@ public:
 		}
 	}
 
-
-	datatype front () {
-		return ( datatype )(root -> next -> data);
+	datatype front() const {
+		return (datatype)(root -> next -> data);
 	}
 
-	datatype back () {
-		node* iter = root;
+	void pop() {
+		node* deleted = root -> next;
 
-		while ( iter -> next != NULL )
-			iter = iter -> next;
-
-		return ( datatype )( iter -> data );
+		root -> next = root->next->next;
+		delete deleted;
+		return;
 	}
 
-	void push ( datatype arg ) {
-		node* iter = root;
 
-		while ( iter -> next != NULL )
+	void push( datatype arg ) {
+		if ( root-> next == nullptr )
+			return;
+
+		node* iter = root;
+		while ( iter -> next != nullptr )
 			iter = iter -> next;
 
-		node* new_node = (node*) malloc ( sizeof ( node ));
 
-		new_node -> next = NULL;
-		new_node -> data = arg;
+		node* newnode = new node;
 
-		iter -> next  = new_node;
-		return;		
+		newnode->next = root->next;
+		newnode->data = arg;
+
+		iter->next = newnode;
+		return;
 	}
 
-	void pop () {
-		node* iter = root;
+	datatype at( int pos ) const {
+		if ( root == NULL || root->next == NULL)
+			return node().data;
 
-		while ( iter -> next -> next != NULL )
-			iter = iter -> next;
+		node* iter =root;
 
-		free ( iter -> next );
-		return;		
+		int crr{-1};
+		while ( iter->next != nullptr && crr != pos ) {
+			iter = iter->next;
+			crr++;
+		}
+
+		return iter -> data;
 	}
 
 };

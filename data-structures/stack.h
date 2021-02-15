@@ -2,97 +2,165 @@
 #define STACK_H_
 
 #include <iostream>
-#include <stdlib.h>
-
 
 template <typename datatype>
 
 class stack {
 private:
+	bool erase_called = false;
 	struct node {
 		datatype data;
 		node* next;
 	};
+
 public:
-	node* root = (node*) malloc ( sizeof ( node ));
+	node* root = new node;
 	int size = 0;
 
 	stack () {
 		root -> data = NULL;
-		root -> next = NULL;
+		root -> next = nullptr;
 	}
 
 	stack ( int len ) {
 		root -> data = NULL;
-		root -> next = NULL;
+		root -> next = nullptr;
 
 		node* iter = root;
 
 		for ( int i{ 0 } ; i < len ; i++){
-			iter -> next = (node*) malloc ( sizeof ( node ));
+			iter -> next = new node;
 			iter = iter -> next;
 
 			iter -> data = NULL;
-			iter -> next = NULL; 
+			iter -> next = nullptr; 
 		}
+
+		size = len;
 	}
 
-	stack ( datatype* arr, int len ){
-		root -> next = NULL;
+	stack ( const datatype* arr, int len ){
+		root -> next = nullptr;
 		root -> data = NULL;
 
 		node* iter = root;
 
 		for( int i { 0 }; i < len ; i++ ){
-			iter -> next = (node*) malloc ( sizeof ( node ));
+			iter -> next = new node;
 			iter = iter -> next;
 
 			iter -> data = arr[i];
-			iter -> next = NULL;
-			size++;
+			iter -> next = nullptr;
+			++size;
 		}
 	}
 
-	bool is_empty () {
-		if ( root -> next == NULL )
-			return true;
-		return false;
-	}
-
 	void erase () {
-		if ( root -> next == NULL )
+		if ( root -> next == nullptr )
 			return;
 
 		node* target;
 		
 		for( ;; ) {
 			target = root;
-			if ( root -> next == NULL ){
-				free( target );
+			if ( root -> next == nullptr ){
+				delete target;
 				return;
 			}
 
 			else {
 				root = root -> next;
-				free( target );
+				delete target;
 			}
 		}
+		erase_called = true;
+	}
+
+	~stack() {
+		if(!erase_called)
+			erase();
+	}
+
+	stack ( const stack& s ) {
+		node* iter = root;
+		for ( int i{0} ; i < s.size ; ++i ) {
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = s.at(i);
+			iter -> next = nullptr;
+		}	
+		size = s.size;
+	}
+
+	stack ( const stack&& s ) {
+		node* iter = root;
+		for ( int i{0} ; i < s.size ; ++i ) {
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = s.at(i);
+			iter -> next = nullptr;
+		}	
+		size = s.size;
+	}
+
+	void operator=( const stack& s ) {
+		erase();
+		erase_called = false;
+
+		node* iter = root;
+		for ( int i{0} ; i < s.size ; ++i ) {
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = s.at(i);
+			iter -> next = nullptr;
+		}	
+		size = s.size;
+	}
+
+	void operator=( const stack&& s ) {
+		erase();
+		erase_called = false;
+
+		root = s.root;
+		size = s.size;
+	}
+
+	bool is_empty () const {
+		if ( root -> next == nullptr )
+			return true;
+		return false;
+	}
+
+	datatype at( int pos ) const {
+		node* iter = root;
+
+		int crr{ -1 };
+		while ( iter->next != NULL && crr != pos )
+		{
+			iter = iter -> next;
+			++crr;
+		}	
+
+		return iter->data;
 	}
 
 	void print () {
-		if(root -> next == NULL)
+		if(root -> next == nullptr)
 			return;
 
 		node* iter = root -> next; 
 
-		for( int i{0} ; iter != NULL ; i++, iter = iter -> next)
+		for( int i{0} ; iter != nullptr ; i++, iter = iter -> next)
 			std :: cout << "node "<<i << " : "<< iter -> data << std :: endl;
 		
 		std::cout << "	\n\n";
 		return;
 	}
 
-	datatype top () {
+	datatype top () const {
 		return ( datatype )( root -> next -> data );
 	}
 
@@ -100,7 +168,7 @@ public:
 		node* target = root -> next;
 
 		root -> next = root -> next -> next;
-		free ( target );
+		delete target ;
 
 		size--;
 		return;
@@ -108,7 +176,7 @@ public:
 
 	void push ( datatype arg ) {
 		
-		node* new_node = (node*) malloc ( sizeof ( node ));
+		node* new_node = new node;
 
 		new_node -> next = root -> next ;
 		new_node -> data = arg;

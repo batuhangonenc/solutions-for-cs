@@ -7,51 +7,97 @@
 template <typename datatype>
 class LinkedList {
 private:
+	bool erase_called = false;
+
 	struct node {
 		datatype data;
 		node* next;
 	};
 public:
-	node* root = (node*) malloc ( sizeof(node));
+	node* root = new node;
 
 	LinkedList () {
-		root->next = NULL;
+		root->next = nullptr;
 		root->data = NULL;
 	}
 
 	LinkedList ( int len ) {
 		root -> data = NULL;
-		root -> next = NULL;
+		root -> next = nullptr;
 
 		node* iter = root;	
 
 		for(int i{0} ; i < len ; i++){
-			iter->next = (node*) malloc ( sizeof(node));
+			iter->next = new node;
 
 			iter = iter->next;	
 			
 			iter->data = NULL;
-			iter->next = NULL;
+			iter->next = nullptr;
 
 		}
 	}
 
 	LinkedList( datatype* arr, int SIZE ) {
 		root -> data = NULL;
-		root -> next == NULL;
+		root -> next == nullptr;
 		
 		node* iter = root;	
 
 		for ( int i{0} ; i < SIZE ; i++ ) {
-			iter->next = (node*) malloc ( sizeof(node));
+			iter->next = new node;
 
 			iter = iter->next;
 			
 			iter->data = arr[i];
-			iter->next = NULL;
+			iter->next = nullptr;
 		}
 	}
 
+	LinkedList( LinkedList& ll ) {
+		if ( ll.root == NULL || ll.root -> next == NULL )
+			return;
+
+		node* iter_ll = ll.root;
+		int llsize = 0;
+		while ( iter_ll -> next != NULL ) {
+			iter_ll = iter_ll -> next;
+			++llsize;
+		}
+
+
+		node* iter = root;
+		for ( int i{-1} ; i < llsize ; ++i ) {	
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = ll.at(i);
+			iter -> next = nullptr;
+		}	
+	}
+
+	LinkedList( LinkedList&& ll ) {
+		if ( ll.root == NULL || ll.root -> next == NULL )
+			return;
+
+		node* iter_ll = ll.root;
+		int llsize = 0;
+		while ( iter_ll -> next != NULL ) {
+			iter_ll = iter_ll -> next;
+			++llsize;
+		}
+
+
+		node* iter = root;
+		for ( int i{-1} ; i < llsize ; ++i ) {	
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = ll.at(i);
+			iter -> next = nullptr;
+		}	
+
+	}
 
 	void erase () {
 		node* target;
@@ -59,7 +105,7 @@ public:
 		for(;;){
 
 			target = root;
-			if( root -> next == NULL )
+			if( root -> next == nullptr )
 			{
 				free(target);
 				return;
@@ -73,12 +119,64 @@ public:
 		}
 	}
 
-	datatype at ( int pos ) {
+	void operator=( LinkedList&& ll ) {
+		erase();
+		erase_called = false;
+
+		node* iter_ll = ll.root;
+		int llsize = 0;
+		while ( iter_ll -> next != NULL ) {
+			iter_ll = iter_ll -> next;
+			++llsize;
+		}
+
+
+		node* iter = root;
+		for ( int i{-1} ; i < llsize ; ++i ) {	
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = ll.at(i);
+			iter -> next = nullptr;
+		}	
+	}
+
+	void operator=( LinkedList& ll ) {
+		erase();
+		erase_called = false;
+
+
+		node* iter_ll = ll.root;
+		int llsize = 0;
+		while ( iter_ll -> next != NULL ) {
+			iter_ll = iter_ll -> next;
+			++llsize;
+		}
+
+
+		node* iter = root;
+		for ( int i{-1} ; i < llsize ; ++i ) {	
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = ll.at(i);
+			iter -> next = nullptr;
+		}	
+	}
+
+	~LinkedList() {
+		if (!erase_called)
+			erase();
+	}
+
+	
+
+	datatype at ( int pos ) const {
 	
 		node* iter = root;
 		int crr{-1};
 
-		while ( iter->next != NULL && crr != pos ) {
+		while ( iter->next != nullptr && crr != pos ) {
 			iter = iter->next;
 			crr++;
 		}
@@ -89,7 +187,7 @@ public:
 
 	int i{0}; 
 	void reverse ( node* iter ) {
-		if( iter == NULL )
+		if( iter == nullptr )
 			return;
 
 		reverse(iter->next);
@@ -99,7 +197,7 @@ public:
 	}
 	
 	void reverse(){
-		if( root  == NULL )
+		if( root  == nullptr )
 			return;
 
 		reverse(root->next);
@@ -108,13 +206,13 @@ public:
 
 	}
 
-	void print(){
-		if ( root -> next == NULL )
+	void print() {
+		if ( root -> next == nullptr )
 			return;
 
 		node* iter = root -> next; 
 
-		for ( int i{0} ; iter != NULL ; i++, iter = iter -> next)
+		for ( int i{0} ; iter != nullptr ; i++, iter = iter -> next)
 			std :: cout << "node "<<i << " : "<< iter -> data << std :: endl;
 		
 		std::cout << "\n\n";
@@ -123,7 +221,7 @@ public:
 
 
 	void change_at( datatype arg, int pos ) {
-		if(root -> next == NULL)
+		if(root -> next == nullptr)
 			return;
 
 		if( arg == NULL )
@@ -132,7 +230,7 @@ public:
 		node* iter = root;
 
 		for ( int crr{-1} ; ;){
-			if ( iter == NULL ) {
+			if ( iter == nullptr ) {
 				std::cout << "NULL PTR... GUESS WHY\n";
 				break;
 			}
@@ -161,7 +259,7 @@ public:
 		if (arg == NULL)
 		       return;
 
-		node* newnode = (node*) malloc ( sizeof(node));
+		node* newnode = new node;
 
 		newnode->data = arg;
 		newnode->next = root->next;
@@ -176,12 +274,12 @@ public:
 			return;
 
 		node* iter = root;
-		node* new_node = (node*) malloc ( sizeof(node));
+		node* new_node = new node;
 
-		new_node -> next = NULL;
+		new_node -> next = nullptr;
 		new_node -> data = arg;
 
-		for (; iter->next != NULL ;)
+		for (; iter->next != nullptr ;)
 			iter = iter->next;
 
 		iter -> next = new_node;
@@ -189,13 +287,13 @@ public:
 
 
 	void delete_at( int pos ) {
-		if(root -> next == NULL)
+		if(root -> next == nullptr)
 			return;
 
 
 		node* iter = root;
 
-		for(int crr{-1}; iter != NULL ;){
+		for(int crr{-1}; iter != nullptr ;){
 
 			if ( crr == pos - 1){
 				node* del = iter -> next;
@@ -218,12 +316,12 @@ public:
 
 
 	void concat ( node* new_root ) {
-		if ( new_root -> next == NULL)
+		if ( new_root -> next == nullptr)
 			return;
 
 		node* iter = root;
 
-		for (; iter->next != NULL ;)
+		for (; iter->next != nullptr ;)
 			iter = iter->next;
 
 		iter -> next = new_root -> next;
@@ -231,7 +329,7 @@ public:
 	}
 
 	void insert ( node* new_root, int pos ) {
-		if ( new_root -> next == NULL || root -> next == NULL )
+		if ( new_root -> next == nullptr || root -> next == nullptr )
 			return;
 
 		node* iter = root;
@@ -244,7 +342,7 @@ public:
 
 				iter->next = new_root;
 
-				while ( new_root->next != NULL ){
+				while ( new_root->next != nullptr ){
 					new_root = new_root->next;
 				}
 
@@ -253,7 +351,7 @@ public:
 
 			}
 
-			else if ( iter->next == NULL) {
+			else if ( iter->next == nullptr ) {
 				concat(new_root);
 				return;
 			}
