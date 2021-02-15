@@ -38,7 +38,7 @@ public:
 		}
 	}
 
-	LinkedList( datatype* arr, int SIZE ) {
+	LinkedList( const datatype* arr, int SIZE ) {
 		root -> data = NULL;
 		root -> next == nullptr;
 		
@@ -54,7 +54,7 @@ public:
 		}
 	}
 
-	LinkedList( LinkedList& ll ) {
+	LinkedList( const LinkedList& ll ) {
 		if ( ll.root == NULL || ll.root -> next == NULL )
 			return;
 
@@ -142,7 +142,7 @@ public:
 		}	
 	}
 
-	void operator=( LinkedList& ll ) {
+	void operator=(const LinkedList& ll ) {
 		erase();
 		erase_called = false;
 
@@ -225,7 +225,7 @@ public:
 	void change_at( datatype arg, int pos ) {
 		if(root -> next == nullptr)
 			return;
-		
+
 		if( arg == NULL )
 			return;
 
