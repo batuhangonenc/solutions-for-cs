@@ -50,7 +50,7 @@ public:
 	}
 
 
-	bool is_str_eq( const string& s1, const string& s2 ) {
+	bool is_str_eq( const string& s1, const string& s2 ) const {
 		char a, b;
 		for( int i{0} ; i < s1.size() && i < s2.size() ; ++i ) {
 			a = (char)s1[i];
@@ -62,7 +62,7 @@ public:
 		return true;
 	}
 
-	datatype& operator[]( const string& s ) {
+	datatype& operator[]( const string& s ) const {
 		if( root == NULL || root-> next == NULL )
 			return root->data;
 
@@ -79,7 +79,7 @@ public:
 		}
 	}	
 
-	datatype& operator[]( const int& i ) {
+	datatype& operator[]( const int& i ) const {
 		if( root == NULL || root-> next == NULL )
 			return root->data;
 
@@ -98,7 +98,7 @@ public:
 		}
 	}	
 
-	void print() {
+	void print() const {
 		int i{0};
 		while( i < keys.size-1 ) {
 			cout << "key : " << keys[i+1]<< " value : " << this->at(i) << endl;
@@ -200,7 +200,7 @@ public:
 		return (queue<string>)( keys );
 	}
 
-	datatype at( int pos ) {
+	datatype at( const int& pos ) const {
 		map_node* iter = root;
 		for(int crr{-1} ; ; )
 		{

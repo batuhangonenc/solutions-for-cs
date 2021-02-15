@@ -22,7 +22,6 @@ public:
 
 	DoublyLinkedList ( const int& len) {
 		root -> prev = nullptr;
-		root -> data = NULL;
 		root -> next = NULL;
 
 		node* iter = root;	
@@ -33,7 +32,6 @@ public:
 			iter->next->prev = iter;
 			iter = iter->next;	
 			
-			iter->data = NULL;
 			iter->next = NULL;
 
 		}
@@ -43,7 +41,6 @@ public:
 	DoublyLinkedList ( const datatype* arr, const int& SIZE) {
 
 		root -> prev = nullptr;
-		root -> data = NULL;
 		root -> next = NULL;
 
 
@@ -132,7 +129,7 @@ public:
 	}
 
 
-	void change_at ( const datatype& arg, const int& pos ) { 
+	void change_at ( const datatype& arg, const int& pos ) const { 
 		if( arg == NULL || root -> next == NULL)
 			return;
 		
@@ -224,7 +221,7 @@ public:
 	}
 
 
-	void concat ( node* new_root ) {
+	void concat ( node* new_root ) const {
 		if ( new_root -> next == NULL )
 			return;
 
@@ -239,7 +236,7 @@ public:
 		return;
 	}
 
-	void insert ( node* new_root, const int& pos ) {
+	void insert ( node* new_root, const int& pos ) const {
 		if( root -> next == NULL || new_root -> next == NULL)
 			return;
 		

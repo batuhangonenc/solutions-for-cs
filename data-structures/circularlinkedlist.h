@@ -62,7 +62,7 @@ public:
 		return;
 	}
 	
-	void push ( datatype arg ) {
+	void push ( datatype arg ) const {
 	
 		if( arg == NULL){
 			return;
@@ -120,7 +120,7 @@ public:
 		}
 	}
 
-	void insert ( node* new_head, const int& pos ) {
+	void insert ( node* new_head, const int& pos ) const {
 		if( head->next == NULL && new_head -> next != NULL ){
 			head -> next = new_head -> next ;
 			return;

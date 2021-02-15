@@ -23,7 +23,7 @@ public:
 		root -> next = nullptr;
 	}
 
-	stack ( int len ) {
+	stack ( const int& len ) {
 		root -> next = nullptr;
 
 		node* iter = root;
@@ -39,7 +39,7 @@ public:
 		size = len;
 	}
 
-	stack ( const datatype* arr, int len ){
+	stack ( const datatype* arr, const int& len ){
 		root -> next = nullptr;
 
 		node* iter = root;
@@ -105,7 +105,7 @@ public:
 		size = s.size;
 	}
 
-	void delete_at( int pos ) {
+	void delete_at( const int& pos ) {
 		if(root -> next == nullptr)
 			return;
 
@@ -185,7 +185,7 @@ public:
 	}
 
 
-	void print () {
+	void print () const {
 		if(root -> next == nullptr)
 			return;
 
@@ -228,7 +228,7 @@ public:
 		return;
 	}
 
-	void swap ( const int& pos1, const int& pos2 ) {
+	void swap ( const int& pos1, const int& pos2 ) const {
 		node* iter = root;
 		datatype holder_1, holder_2;
 

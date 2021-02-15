@@ -22,7 +22,6 @@ public:
 	}
 
 	LinkedList ( int len ) {
-		root -> data = NULL;
 		root -> next = nullptr;
 
 		node* iter = root;	
@@ -32,14 +31,12 @@ public:
 
 			iter = iter->next;	
 			
-			iter->data = NULL;
 			iter->next = nullptr;
 
 		}
 	}
 
 	LinkedList( const datatype* arr, int SIZE ) {
-		root -> data = NULL;
 		root -> next == nullptr;
 		
 		node* iter = root;	
@@ -216,7 +213,7 @@ public:
 	}
 
 
-	void print() {
+	void print() const {
 		if ( root -> next == nullptr )
 			return;
 
@@ -231,7 +228,7 @@ public:
 
 
 
-	void change_at( const datatype& arg, const int& pos ) {
+	void change_at( const datatype& arg, const int& pos ) const {
 		if(root -> next == nullptr)
 			return;
 
@@ -326,7 +323,7 @@ public:
 	}
 
 
-	void concat ( node* new_root ) {
+	void concat ( node* new_root ) const {
 		if ( new_root -> next == nullptr)
 			return;
 
@@ -339,7 +336,7 @@ public:
 		return;
 	}
 
-	void insert ( node* new_root, const int& pos ) {
+	void insert ( node* new_root, const int& pos ) const {
 		if ( new_root -> next == nullptr || root -> next == nullptr )
 			return;
 
@@ -375,7 +372,7 @@ public:
 		}
 	}
 
-	void swap ( const int& pos1, const int& pos2 ) {
+	void swap ( const int& pos1, const int& pos2 ) const {
 		node* iter = root;
 		datatype holder_1, holder_2;
 

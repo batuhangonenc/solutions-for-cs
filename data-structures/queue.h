@@ -118,7 +118,7 @@ public:
 	}
 
 
-	void print () {
+	void print () const {
 		if ( root -> next == nullptr )
 			return;
 
@@ -134,7 +134,7 @@ public:
 		return;
 	}
 
-	void delete_at( int pos ) {
+	void delete_at( const int& pos ) {
 		if(root -> next == nullptr)
 			return;
 
@@ -163,7 +163,7 @@ public:
 		std::cout << "\n\nNULLPTR\n\n";
 	}
 
-	void swap ( int pos1, int pos2 ) {
+	void swap ( const int& pos1, const int& pos2 ) const {
 		node* iter = root;
 		datatype holder_1, holder_2;
 
