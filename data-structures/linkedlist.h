@@ -101,7 +101,7 @@ public:
 		for(;;){
 
 			target = root;
-			if( root -> next == nullptr )
+			if( root == NULL || root -> next == nullptr )
 			{
 				free(target);
 				return;
@@ -113,6 +113,8 @@ public:
 				free(target);
 			}
 		}
+		std::cout << "merhaba\n\n";
+		erase_called = true;
 	}
 
 	// operator overloading
@@ -173,6 +175,7 @@ public:
 	~LinkedList() {
 		if (!erase_called)
 			erase();
+		return;
 	}
 
 	
@@ -322,54 +325,28 @@ public:
 	}
 
 
-	void concat ( const node* new_root ) const {
+	void concat ( const LinkedList<datatype>& ll ) const {
+		node* new_root = ll.root;
+
 		if ( new_root -> next == nullptr)
 			return;
 
 		node* iter = root;
-
-		for (; iter->next != nullptr ;)
+		while( iter->next != nullptr )
 			iter = iter->next;
 
-		iter -> next = new_root -> next;
+		while( new_root -> next != NULL ){
+			new_root = new_root -> next;			
+			iter -> next = new node;
+
+			iter = iter -> next;
+			iter -> data = new_root -> data;
+			iter -> next = nullptr;
+		}
+
 		return;
 	}
 
-	void insert ( const node* new_root, const int& pos ) const {
-		if ( new_root -> next == nullptr || root -> next == nullptr )
-			return;
-
-		node* iter = root;
-		for ( int crr{-1} ; ;){
-
-			if ( crr == pos - 1) {
-				new_root = new_root->next;
-				
-				node* b_iter = iter->next;
-
-				iter->next = new_root;
-
-				while ( new_root->next != nullptr ){
-					new_root = new_root->next;
-				}
-
-				new_root -> next = b_iter;
-				return;
-
-			}
-
-			else if ( iter->next == nullptr ) {
-				concat(new_root);
-				return;
-			}
-
-
-			else {
-				iter = iter->next;
-				crr++;
-			}
-		}
-	}
 
 	void swap ( const int& pos1, const int& pos2 ) const {
 		node* iter = root;
