@@ -180,7 +180,7 @@ public:
 	}
 
 	
-	datatype at ( int pos ) const {
+	datatype at ( const int& pos ) const {
 	
 		node* iter = root;
 		int crr{-1};
@@ -231,7 +231,7 @@ public:
 
 
 
-	void change_at( datatype arg, int pos ) {
+	void change_at( const datatype& arg, const int& pos ) {
 		if(root -> next == nullptr)
 			return;
 
@@ -266,7 +266,7 @@ public:
 
 
 
-	void push_front ( datatype arg ) {
+	void push_front ( const datatype& arg ) {
 		if (arg == NULL)
 		       return;
 
@@ -280,7 +280,7 @@ public:
 		return;
 	}
 
-	void push_end ( datatype arg ) {
+	void push_end ( const datatype& arg ) {
 		if( arg == NULL )
 			return;
 
@@ -297,7 +297,7 @@ public:
 	}
 
 
-	void delete_at( int pos ) {
+	void delete_at( const int& pos ) {
 		if(root -> next == nullptr)
 			return;
 
@@ -339,7 +339,7 @@ public:
 		return;
 	}
 
-	void insert ( node* new_root, int pos ) {
+	void insert ( node* new_root, const int& pos ) {
 		if ( new_root -> next == nullptr || root -> next == nullptr )
 			return;
 
@@ -375,7 +375,7 @@ public:
 		}
 	}
 
-	void swap ( int pos1, int pos2 ) {
+	void swap ( const int& pos1, const int& pos2 ) {
 		node* iter = root;
 		datatype holder_1, holder_2;
 

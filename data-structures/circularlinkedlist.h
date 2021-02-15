@@ -94,7 +94,7 @@ public:
 		}	
 	}
 
-	void delete_at (int pos) {
+	void delete_at ( const int& pos) {
 		if(head->next == NULL)
 			return;
 
@@ -120,7 +120,7 @@ public:
 		}
 	}
 
-	void insert ( node* new_head, int pos ) {
+	void insert ( node* new_head, const int& pos ) {
 		if( head->next == NULL && new_head -> next != NULL ){
 			head -> next = new_head -> next ;
 			return;

@@ -20,12 +20,10 @@ public:
 	int size = 0;
 
 	stack () {
-		root -> data = NULL;
 		root -> next = nullptr;
 	}
 
 	stack ( int len ) {
-		root -> data = NULL;
 		root -> next = nullptr;
 
 		node* iter = root;
@@ -43,7 +41,6 @@ public:
 
 	stack ( const datatype* arr, int len ){
 		root -> next = nullptr;
-		root -> data = NULL;
 
 		node* iter = root;
 
@@ -108,6 +105,35 @@ public:
 		size = s.size;
 	}
 
+	void delete_at( int pos ) {
+		if(root -> next == nullptr)
+			return;
+
+
+		node* iter = root;
+
+		for(int crr{-1}; iter != nullptr ;){
+
+			if ( crr == pos - 1){
+				node* del = iter -> next;
+
+				iter -> next = iter -> next -> next;
+				free(del);
+
+				--size;
+				return;
+			}
+
+			else{
+				iter = iter->next;
+				crr++;
+			}
+		}
+
+
+		std::cout << "\n\nNULLPTR\n\n";
+	}
+
 	void operator=( const stack& s ) {
 		erase();
 		erase_called = false;
@@ -145,7 +171,7 @@ public:
 		return false;
 	}
 
-	datatype at( int pos ) const {
+	datatype at( const int& pos ) const {
 		node* iter = root;
 
 		int crr{ -1 };
@@ -185,11 +211,11 @@ public:
 		root -> next = root -> next -> next;
 		delete target ;
 
-		size--;
+		--size;
 		return;
 	}
 
-	void push ( datatype arg ) {
+	void push ( const datatype& arg ) {
 		
 		node* new_node = new node;
 
@@ -198,11 +224,11 @@ public:
 
 		root -> next = new_node;
 		
-		size++;
+		++size;
 		return;
 	}
 
-	void swap ( int pos1, int pos2 ) {
+	void swap ( const int& pos1, const int& pos2 ) {
 		node* iter = root;
 		datatype holder_1, holder_2;
 

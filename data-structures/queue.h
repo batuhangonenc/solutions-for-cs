@@ -134,6 +134,35 @@ public:
 		return;
 	}
 
+	void delete_at( int pos ) {
+		if(root -> next == nullptr)
+			return;
+
+
+		node* iter = root;
+
+		for(int crr{-1}; iter != nullptr ;){
+
+			if ( crr == pos - 1){
+				node* del = iter -> next;
+
+				iter -> next = iter -> next -> next;
+				free(del);
+
+				--size;
+				return;
+			}
+
+			else{
+				iter = iter->next;
+				crr++;
+			}
+		}
+
+
+		std::cout << "\n\nNULLPTR\n\n";
+	}
+
 	void swap ( int pos1, int pos2 ) {
 		node* iter = root;
 		datatype holder_1, holder_2;
@@ -187,9 +216,18 @@ public:
 	}
 
 	
-	void push( datatype arg ) {
+	void push( const datatype& arg ) {
 		if ( root-> next == nullptr )
+		{
+			node* iter = root;
+			iter -> next = new node;
+			iter = iter-> next;
+
+			iter -> data = arg;
+			iter -> next = nullptr;
+			++size;
 			return;
+		}
 
 		node* iter = root;
 		while ( iter -> next != nullptr )
@@ -198,14 +236,15 @@ public:
 
 		node* newnode = new node;
 
-		newnode->next = root->next;
+		newnode->next = nullptr;
 		newnode->data = arg;
 
 		iter->next = newnode;
+		++size;
 		return;
 	}
 
-	datatype at( int pos ) const {
+	datatype at( const int& pos ) const {
 		if ( root == NULL || root->next == NULL)
 			return node().data;
 
@@ -226,6 +265,7 @@ public:
 		root -> next = root -> next -> next;
 		
 		free ( target );
+		--size;
 		return;		
 
 	}

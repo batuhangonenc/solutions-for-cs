@@ -13,14 +13,14 @@ private:
 		node* prev;
 	};
 public:
-	node* const root = (node*) malloc ( sizeof( node));
+	node* const root = new node;
 	
 	DoublyLinkedList () {
 		root -> next = NULL;
 		root -> prev = nullptr;
 	}
 
-	DoublyLinkedList (int len) {
+	DoublyLinkedList ( const int& len) {
 		root -> prev = nullptr;
 		root -> data = NULL;
 		root -> next = NULL;
@@ -28,7 +28,7 @@ public:
 		node* iter = root;	
 
 		for(int i{0} ; i < len ; i++){
-			iter->next = (node*) malloc ( sizeof( node));
+			iter->next = new node;
 
 			iter->next->prev = iter;
 			iter = iter->next;	
@@ -40,7 +40,7 @@ public:
 	}
 
 
-	DoublyLinkedList (datatype* arr, int SIZE) {
+	DoublyLinkedList ( const datatype* arr, const int& SIZE) {
 
 		root -> prev = nullptr;
 		root -> data = NULL;
@@ -83,7 +83,7 @@ public:
 	}
 
 
-	datatype at ( int pos ) const {
+	datatype at ( const int& pos ) const {
 	 
 		node* iter = root;
 		int crr{-1};
@@ -132,7 +132,7 @@ public:
 	}
 
 
-	void change_at ( datatype arg, int pos ) { 
+	void change_at ( const datatype& arg, const int& pos ) { 
 		if( arg == NULL || root -> next == NULL)
 			return;
 		
@@ -162,7 +162,7 @@ public:
 	}
 
 
-	void push_front ( datatype arg ) {
+	void push_front ( const datatype& arg ) {
 		if( arg == NULL )
 			return;
 
@@ -177,7 +177,7 @@ public:
 		return;
 	}
 
-	void push_end ( datatype arg ) {
+	void push_end ( const datatype& arg ) {
 		if ( arg == NULL )
 		       return;	
 
@@ -195,7 +195,7 @@ public:
 	}
 
 
-	void delete_at ( int pos) {
+	void delete_at ( const int& pos) {
 		if(root -> next == NULL)
 			return;
 
@@ -239,7 +239,7 @@ public:
 		return;
 	}
 
-	void insert ( node* new_root, int pos ) {
+	void insert ( node* new_root, const int& pos ) {
 		if( root -> next == NULL || new_root -> next == NULL)
 			return;
 		
