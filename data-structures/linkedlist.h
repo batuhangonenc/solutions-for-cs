@@ -21,7 +21,7 @@ public:
 		root->data = NULL;
 	}
 
-	LinkedList ( int len ) {
+	LinkedList ( const int& len ) {
 		root -> next = nullptr;
 
 		node* iter = root;	
@@ -36,7 +36,7 @@ public:
 		}
 	}
 
-	LinkedList( const datatype* arr, int SIZE ) {
+	LinkedList( const datatype* arr, const int& SIZE ) {
 		root -> next == nullptr;
 		
 		node* iter = root;	
@@ -61,7 +61,6 @@ public:
 			iter_ll = iter_ll -> next;
 			++llsize;
 		}
-
 
 		node* iter = root;
 		for ( int i{-1} ; i < llsize ; ++i ) {	
@@ -323,7 +322,7 @@ public:
 	}
 
 
-	void concat ( node* new_root ) const {
+	void concat ( const node* new_root ) const {
 		if ( new_root -> next == nullptr)
 			return;
 
@@ -336,7 +335,7 @@ public:
 		return;
 	}
 
-	void insert ( node* new_root, const int& pos ) const {
+	void insert ( const node* new_root, const int& pos ) const {
 		if ( new_root -> next == nullptr || root -> next == nullptr )
 			return;
 
