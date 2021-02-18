@@ -1,4 +1,4 @@
-### an integer with unlimited bases!
+### GINT ! an integer with unlimited bases!
 #### constructor:
 ##### gint( const int& size, const char& ch)
 ##### memset( data, ch, size)
