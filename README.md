@@ -1,3 +1,10 @@
+### an integer with unlimited bases!
+#### constructor:
+#### gint( const int& size, const char& ch)
+##### memset( data, ch, size)
+#### there is only one function named 'add' now.
+#### it accepts one paramater as int.
+ 
 ### Guide for Structures
 
 #### Linked List Methods
